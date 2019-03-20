@@ -17,6 +17,9 @@ class CommunistBot(private val api: DiscordApi) {
     private val processes = mutableListOf<MessageProcess>()
 
     fun receiveMessage(event: MessageCreateEvent) {
+        if (!event.messageAuthor.isUser)
+            return
+
         for (process in processes) {
             if (process.qualifier(event)) {
                 process.action(event, api)

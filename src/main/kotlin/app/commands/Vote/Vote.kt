@@ -1,8 +1,7 @@
-package app.commands
+package app.commands.Vote
 
-import app.Poll
 import app.commands.Abstract.StandardCommand
-import app.stringToColor
+import app.util.stringToColor
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.channel.VoiceChannel
 import org.javacord.api.entity.message.Message

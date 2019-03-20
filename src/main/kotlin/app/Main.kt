@@ -1,11 +1,11 @@
 package app
 
 import app.commands.*
+import app.commands.Vote.Vote
 import org.javacord.api.DiscordApiBuilder
 import java.io.File
 
 fun main() {
-    // Insert your bot's token here
     val token = File("token.txt").readText(Charsets.UTF_8)
 
     val api = DiscordApiBuilder().setToken(token).login().join()
@@ -23,6 +23,7 @@ fun main() {
     cBot.addProccess(Slay())
     cBot.addProccess(Wapoosh())
     cBot.addProccess(Isanyonethere())
+    cBot.addProccess(Whenisay(cBot))
 
     val voteProcess = Vote()
     api.addReactionAddListener(voteProcess::receiveVoteReaction)
