@@ -47,7 +47,8 @@ class CommunistBot(private val api: DiscordApi) {
             return
         }
 
-        if (!arrayOf(547918360516755459, 547918362794131467, 557369792236093440).contains(event.role.id)) {
+        // m, f, nb
+        if (!arrayOf(547918362794131467, 547918360516755459, 547918349506707456).contains(event.role.id)) {
             return
         }
 

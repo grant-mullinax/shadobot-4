@@ -23,7 +23,6 @@ dependencies {
     implementation 'org.javacord:javacord:3.0.3'
     compile 'org.javacord:javacord:3.0.3'
     compile 'org.tensorflow:tensorflow:1.12.0'
-    compile 'com.mashape.unirest:unirest-java:1.4.8'
 }
 
 jar {

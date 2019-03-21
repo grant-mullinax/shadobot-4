@@ -2,11 +2,13 @@ package app
 
 import org.tensorflow.Graph
 import org.tensorflow.Tensor
-import org.tensorflow.Session
-import org.tensorflow.TensorFlow
-import java.nio.charset.Charset
+import java.io.File
 
 
 fun main() {
-    Graph()
+    val graph = Graph()
+
+    val file = File("path.txt")
+    val intLines = file.readLines().map { l -> l.map { c -> c.toInt() }.toCollection(mutableListOf()) }
+    Tensor.create(intLines)
 }
