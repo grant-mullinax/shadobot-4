@@ -18,6 +18,7 @@ fun main() {
     cBot.addProccess(BiggestLove())
     cBot.addProccess(Broadcast(api))
     cBot.addProccess(Love())
+    cBot.addProccess(RussianRoulette())
     cBot.addProccess(Pickle())
     cBot.addProccess(Slay())
     cBot.addProccess(Wapoosh())
