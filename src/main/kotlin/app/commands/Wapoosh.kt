@@ -13,9 +13,9 @@ class Wapoosh: StandardCommand() {
             str += "*${event.messageAuthor.asUser().get().name} and ${user.name} wapoosh*\n"
         }
 
-        val r = (0..5).random()
+        val r = (1..5).random()
         print(r)
-        for (i in 1 until r) {
+        for (i in 0 until r) {
             event.channel.sendMessage(str)
         }
     }
