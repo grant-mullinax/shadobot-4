@@ -14,8 +14,7 @@ fun main() {
     cBot.addProccess(Filter())
     cBot.addProccess(Dad())
 
-    cBot.addProccess(Amiugly())
-    cBot.addProccess(Aretheyugly())
+    cBot.addProccess(Ugly())
     cBot.addProccess(BiggestLove())
     cBot.addProccess(Broadcast(api))
     cBot.addProccess(Love())
