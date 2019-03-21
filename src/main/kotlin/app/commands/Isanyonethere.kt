@@ -8,6 +8,6 @@ class Isanyonethere: StandardCommand() {
     override val commandName = "test"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        event.channel.sendMessage("what up brooooooaaaaaoooo")
+        event.channel.sendMessage("what up broooo")
     }
 }
