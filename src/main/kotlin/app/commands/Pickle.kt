@@ -9,9 +9,12 @@ class Pickle: StandardCommand() {
     override val commandName = "pickle"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
+        val mentionedSomeone = event.message.mentionedUsers.isEmpty()
+        val id = if (mentionedSomeone) event.messageAuthor.id else event.message.mentionedUsers[0].id
+        val targetName = if (mentionedSomeone) "Your" else "${event.message.mentionedUsers[0].name}'s"
+
         event.channel.sendMessage(
-            "${event.messageAuthor.asUser().get().name}'s pickle size is " +
-                "${(((event.message.author.id % 100) / 100f) * 12).format(2)} inches"
+            "$targetName pickle size is ${(((id % 100) / 100f) * 12).format(2)} inches"
         )
     }
 }

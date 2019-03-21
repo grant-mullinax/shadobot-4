@@ -18,6 +18,7 @@ class BiggestLove: StandardCommand() {
             if (lines > 50) {
                 event.channel.sendMessage(str)
                 str = ""
+                lines = 0
             }
         }
         event.channel.sendMessage(str)

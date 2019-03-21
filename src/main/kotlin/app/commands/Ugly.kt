@@ -1,6 +1,7 @@
 package app.commands
 
 import app.commands.Abstract.StandardCommand
+import app.util.format
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
@@ -13,6 +14,6 @@ class Ugly: StandardCommand() {
         val uglyScore = minOf(100 - idMod, idMod)/5f
         val targetName = if (mentionedSomeone) "Your" else "${event.message.mentionedUsers[0].name}'s"
 
-        event.channel.sendMessage("$targetName prettiness score is $uglyScore")
+        event.channel.sendMessage("$targetName prettiness score is ${uglyScore.format(2)}")
     }
 }
