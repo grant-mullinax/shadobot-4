@@ -9,9 +9,16 @@ class BiggestLove: StandardCommand() {
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         var str = ""
+        var lines = 0
 
         for (user in event.server.get().members.sortedBy { u -> u.id % 100}) {
             str += "*${user.name} - ${user.id % 100}*\n"
+            lines++
+
+            if (lines > 50) {
+                event.channel.sendMessage(str)
+                str = ""
+            }
         }
         event.channel.sendMessage(str)
     }
