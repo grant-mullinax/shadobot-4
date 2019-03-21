@@ -8,6 +8,8 @@ import org.javacord.api.entity.message.Message
 import org.javacord.api.entity.permission.PermissionType
 import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.api.event.message.reaction.ReactionAddEvent
+import java.lang.Math.log
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class Vote: StandardCommand() {
@@ -123,7 +125,7 @@ class Vote: StandardCommand() {
                     event.channel.sendMessage("nice try r word")
                     return
                 }
-                poll = Poll(votesRequired = 4,
+                poll = Poll(votesRequired = voteRoleRequirement(rank.permissions.allowedBitmask),
                     englishAction = "promote ${target.name} to $rankName",
                     action = {
                         target.addRole(rank)
@@ -137,7 +139,7 @@ class Vote: StandardCommand() {
                     event.channel.sendMessage("nice try r word")
                     return
                 }
-                poll = Poll(votesRequired = 4,
+                poll = Poll(votesRequired = voteRoleRequirement(rank.permissions.allowedBitmask) + 1,
                     englishAction = "demote ${target.name} from $rankName",
                     action = {
                         target.removeRole(rank)

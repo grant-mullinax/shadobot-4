@@ -24,6 +24,7 @@ fun main() {
     cBot.addProccess(Wapoosh())
     cBot.addProccess(Isanyonethere())
     cBot.addProccess(Whenisay(cBot))
+    cBot.addProccess(RoleInfo())
 
     val voteProcess = Vote()
     api.addReactionAddListener(voteProcess::receiveVoteReaction)
