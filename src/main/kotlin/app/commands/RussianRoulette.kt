@@ -10,7 +10,6 @@ class RussianRoulette: StandardCommand() {
     var bullet = 0
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        print("hi")
         if (bullet == 0) {
             event.channel.sendMessage("*squee... whrrrrrrrrr* (you just put the bullet in the gun and spun it)")
             bullet = (1..6).random()

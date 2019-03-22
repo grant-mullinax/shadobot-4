@@ -5,7 +5,7 @@ import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
 class Filter: MessageProcess {
-    private val nRegex: Regex = Regex("ni*[^ ]{0,4}g+e*[^ ]{0,4}r", RegexOption.IGNORE_CASE)
+    private val nRegex: Regex = Regex("(^|[^a-z])ni+[^ ]{0,4}g+e*[^ ]{0,4}r( |\$)", RegexOption.IGNORE_CASE)
 
     override fun qualifier(event: MessageCreateEvent): Boolean {
         return nRegex.containsMatchIn(event.messageContent)

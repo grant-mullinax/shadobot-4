@@ -33,13 +33,18 @@ fun main() {
     api.addMessageCreateListener(cBot::receiveMessage)
     api.addUserRoleAddListener(cBot::mikeyRoleHack)
 
+    api.addServerMemberLeaveListener(cBot::userLeaving)
+    api.addServerMemberJoinListener(cBot::userJoining)
+
     println("---------- BOT ONLINE ----------")
 
-    var file = File("path.txt")
+    cBot.gatherRoles()
+
+    /*var file = File("path.txt")
     file.createNewFile()
 
     api.getChannelById(547303725706903552).get().asTextChannel().get().getMessages(999999999).join().forEach { s ->
         if (!s.content.isBlank())
             file.appendText(s.content + "\n")
-    }
+    }*/
 }
