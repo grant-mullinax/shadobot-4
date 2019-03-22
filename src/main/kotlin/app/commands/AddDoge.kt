@@ -13,6 +13,18 @@ class AddDoge: StandardCommand() {
     override val commandName = "adddoge"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
+        // todo fix maybe vuln?
+        val dogeFolder = File("doge")
+
+        val splitMsg = event.message.content.split(" ")
+        val fileName = splitMsg.subList(1, splitMsg.size).reduce { a, b -> "$a $b" }
+
+        if (File(dogeFolder, "$fileName.png").exists()) {
+            event.channel.sendMessage("A doge with that name already exists!")
+            return
+        }
+
+
         event.message.addReaction("\uD83D\uDC15")
         event.channel.sendMessage("Doge waiting for approval! ${api.getUserById(155061315977740288).get().mentionTag}")
     }
