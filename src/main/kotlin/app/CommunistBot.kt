@@ -92,7 +92,7 @@ class CommunistBot(private val api: DiscordApi) {
         }
     }
 
-    fun gatherRolesForUser(user: User, server: Server) {
+    private fun gatherRolesForUser(user: User, server: Server) {
         roles[user.id] = mutableListOf()
         server.getRoles(user).forEach { r ->
             roles[user.id]!!.add(r.id)

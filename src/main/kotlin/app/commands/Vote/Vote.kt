@@ -44,7 +44,7 @@ class Vote: StandardCommand() {
             }
             "ban" -> {
                 val target = event.message.mentionedUsers[0]
-                poll = Poll(votesRequired = 5,
+                poll = Poll(votesRequired = 7,
                     englishAction = "ban ${target.name}",
                     action = {
                         server.banUser(target)
