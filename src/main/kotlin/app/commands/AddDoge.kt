@@ -48,5 +48,7 @@ class AddDoge: StandardCommand() {
         val image = event.message.get().attachments.first().downloadAsImage().join()
         val imageFile = File("doge/$fileName.png")
         ImageIO.write(image, "png", imageFile)
+
+        event.message.get().addReaction("\uD83C\uDF8A")
     }
 }

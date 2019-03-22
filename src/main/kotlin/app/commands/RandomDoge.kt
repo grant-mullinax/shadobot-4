@@ -20,7 +20,7 @@ class RandomDoge: StandardCommand() {
 
         val embed = EmbedBuilder()
         embed.setImage(file)
-        embed.setTitle(file.name)
+        embed.setTitle(file.nameWithoutExtension)
 
         event.channel.sendMessage(embed)
     }
