@@ -15,8 +15,21 @@ class RandomDoge: StandardCommand() {
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val dogeFolder = File("doge")
-        val files = dogeFolder.listFiles()
-        val file = files[(0..(files.size-1)).random()]
+        var file: File
+
+        val splitMsg = event.message.content.split(" ")
+        if (splitMsg.size > 1) {
+            val fileName = splitMsg.subList(1, splitMsg.size).reduce { a, b -> "$a $b" }
+            file = File(dogeFolder, "$fileName.png")
+
+            if (!file.exists()) {
+                event.channel.sendMessage("Doge $fileName.png not found!")
+                return
+            }
+        } else {
+            val files = dogeFolder.listFiles()
+            file = files[(0..(files.size - 1)).random()]
+        }
 
         val embed = EmbedBuilder()
         embed.setImage(file)
