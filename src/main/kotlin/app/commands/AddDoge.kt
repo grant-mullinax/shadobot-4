@@ -34,7 +34,8 @@ class AddDoge: StandardCommand() {
             return
         }
 
-        if (event.user.id != 155061315977740288) {
+        // me katie laura
+        if (event.user.id != 155061315977740288 || event.user.id != 276215481025822730 || event.user.id != 155500829929897984) {
             return
         }
 
