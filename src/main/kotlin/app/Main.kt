@@ -26,6 +26,7 @@ fun main() {
     cBot.addProccess(Whenisay(cBot))
     cBot.addProccess(RoleInfo())
     cBot.addProccess(RandomDoge())
+    cBot.addProccess(Speak())
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
