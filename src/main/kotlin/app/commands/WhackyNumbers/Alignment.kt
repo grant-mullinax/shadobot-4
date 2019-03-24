@@ -16,15 +16,15 @@ class Alignment: StandardCommand() {
         var alignment = "none?"
 
         when (alignmentCode) {
-            0L -> alignment = "Lawful Good"
-            1L -> alignment = "Lawful Neutral"
-            2L -> alignment = "Lawful Evil"
-            3L -> alignment = "Neutral Good"
-            4L -> alignment = "True Neutral"
-            5L -> alignment = "Neutral Evil"
-            6L -> alignment = "Chaotic Good"
-            7L -> alignment = "Chaotic Neutral"
-            8L -> alignment = "Chaotic Evil"
+            0L -> alignment = "Lawful Good :angel:"
+            1L -> alignment = "Lawful Neutral :zipper_mouth:"
+            2L -> alignment = "Lawful Evil :levitate:"
+            3L -> alignment = "Neutral Good :yum:"
+            4L -> alignment = "True Neutral :expressionless:"
+            5L -> alignment = "Neutral Evil :smirk:"
+            6L -> alignment = "Chaotic Good :upside_down:"
+            7L -> alignment = "Chaotic Neutral :upside_down:"
+            8L -> alignment = "Chaotic Evil :japanese_goblin:"
 
         }
 
