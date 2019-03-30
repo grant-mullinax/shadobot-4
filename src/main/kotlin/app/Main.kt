@@ -2,6 +2,8 @@ package app
 
 import app.commands.*
 import app.commands.Doge.AddDoge
+import app.commands.Doge.ListDoge
+import app.commands.Doge.RandomDoge
 import app.commands.Vote.Vote
 import app.commands.WhackyNumbers.*
 import org.javacord.api.DiscordApiBuilder
@@ -32,10 +34,12 @@ fun main() {
     cBot.addProccess(Devil())
     cBot.addProccess(Angel())
     cBot.addProccess(Alignment())
+    cBot.addProccess(HKCommand())
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
     cBot.addProccess(dogeProcess)
+    cBot.addProccess(ListDoge())
 
     val voteProcess = Vote()
     api.addReactionAddListener(voteProcess::receiveVoteReaction)

@@ -15,5 +15,6 @@ class Filter: MessageProcess {
         event.message.delete()
         val role = event.server.get().roles.find { r -> r.name == "n-word sayer" }
         event.messageAuthor.asUser().get().addRole(role)
+        event.messageAuthor.asUser().get().removeRole(api.getRoleById( 555490458948730897).get())
     }
 }

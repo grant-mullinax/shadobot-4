@@ -17,13 +17,13 @@ class Alignment: StandardCommand() {
         val alignment = when (alignmentCode) {
             0L -> "Lawful Good :angel:"
             1L -> "Lawful Neutral :zipper_mouth:"
-            2L -> "Lawful Evil :levitate:"
-            3L -> "Neutral Good :yum:"
-            4L -> "True Neutral :expressionless:"
+            2L -> "Chaotic Evil :japanese_goblin:"
+            3L -> "Chaotic Neutral :upside_down:"
+            4L -> "Neutral Good :yum:"
             5L -> "Neutral Evil :smirk:"
             6L -> "Chaotic Good :upside_down:"
-            7L -> "Chaotic Neutral :upside_down:"
-            8L -> "Chaotic Evil :japanese_goblin:"
+            7L -> "True Neutral :expressionless:"
+            8L -> "Lawful Evil :levitate:"
             else -> "?"
 
         }
