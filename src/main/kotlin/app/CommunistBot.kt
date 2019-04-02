@@ -75,10 +75,6 @@ class CommunistBot(private val api: DiscordApi) {
     }
 
     fun userJoining(event: ServerMemberJoinEvent) {
-        if (event.server.id != 544737205315305481) {
-            return
-        }
-
         roles[event.user.id]?.forEach {
                 id ->
             event.user.addRole(api.getRoleById(id).get())

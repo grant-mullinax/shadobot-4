@@ -17,7 +17,10 @@ class RussianRoulette: StandardCommand() {
             bullet--
             if (bullet == 0) {
                 event.channel.sendMessage(":boom: ***BANG*** :boom:")
-                event.messageAuthor.asUser().get().sendMessage("cling to life\nhttps://discord.gg/XSt5pV4")
+                val invite = event.server.get().invites.join().find { i -> !i.isTemporary }
+                if (invite != null) {
+                    event.messageAuthor.asUser().get().sendMessage("cling to life\n${invite.url}")
+                }
                 event.server.get().kickUser(event.messageAuthor.asUser().get())
             } else {
                 event.channel.sendMessage("*click*")

@@ -8,15 +8,14 @@ class Wapoosh: StandardCommand() {
     override val commandName = "wapoosh"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        var str = ""
-        for (user in event.message.mentionedUsers) {
-            str += "*${event.messageAuthor.asUser().get().name} and ${user.name} wapoosh*\n"
-        }
+        val str = "*${event.messageAuthor.asUser().get().name} and ${event.message.mentionedUsers[0].name} wapoosh*"
 
-        val r = (1..5).random()
-        print(r)
-        for (i in 0 until r) {
-            event.channel.sendMessage(str)
+        var combo = 1
+        var r = (1..4).random()
+        while (r != 4) {
+            event.channel.sendMessage("$str x$combo")
+            r = (1..4).random()
+            combo++
         }
     }
 }
