@@ -7,6 +7,7 @@ import app.commands.Doge.RandomDoge
 import app.commands.Vote.Vote
 import app.commands.WhackyNumbers.*
 import org.javacord.api.DiscordApiBuilder
+import org.javacord.api.entity.emoji.Emoji
 import java.io.File
 
 fun main() {
@@ -35,6 +36,9 @@ fun main() {
     cBot.addProccess(Angel())
     cBot.addProccess(Alignment())
     cBot.addProccess(HKCommand())
+    cBot.addProccess(HKCommand2())
+    cBot.addProccess(Avatar())
+    cBot.addProccess(Emote())
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)

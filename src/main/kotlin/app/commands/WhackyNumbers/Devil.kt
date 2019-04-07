@@ -14,6 +14,6 @@ class Devil: StandardCommand() {
         val targetName = if (mentionedSomeone) "You are" else "${event.message.mentionedUsers[0].name} is"
 
         event.channel.sendMessage(
-            ":fire: :japanese_goblin: $targetName ${((((id + 2367) % 10000) / 100f)).format(2)}% devil :japanese_goblin: :fire:")
+            ":fire: :japanese_goblin: $targetName ${((((id + 9966) % 10000) / 100f)).format(2)}% devil :japanese_goblin: :fire:")
     }
 }

@@ -14,6 +14,6 @@ class Angel: StandardCommand() {
         val targetName = if (mentionedSomeone) "You are" else "${event.message.mentionedUsers[0].name} is"
 
         event.channel.sendMessage(
-            ":sparkler: :angel: $targetName ${(((id % 100000) / 1000f)).format(2)}% angel :angel: :sparkler:")
+            ":sparkler: :angel: $targetName ${((((id + 95189) % 100000) / 1000f)).format(2)}% angel :angel: :sparkler:")
     }
 }
