@@ -11,7 +11,7 @@ class Wapoosh: StandardCommand() {
         val str = "*${event.messageAuthor.asUser().get().name} and ${event.message.mentionedUsers[0].name} wapoosh*"
 
         var combo = 1
-        var r = (1..4).random()
+        var r = 0
         while (r != 4) {
             event.channel.sendMessage("$str x$combo")
             r = (1..4).random()
