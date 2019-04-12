@@ -26,6 +26,7 @@ fun main() {
     cBot.addProccess(RussianRoulette())
     cBot.addProccess(Pickle())
     cBot.addProccess(Slay())
+    cBot.addProccess(Wapoosh2())
     cBot.addProccess(Wapoosh())
     cBot.addProccess(Isanyonethere())
     cBot.addProccess(Whenisay(cBot))
@@ -39,6 +40,7 @@ fun main() {
     cBot.addProccess(HKCommand2())
     cBot.addProccess(Avatar())
     cBot.addProccess(Emote())
+    cBot.addProccess(ImageToTxt())
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
