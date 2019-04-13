@@ -69,7 +69,7 @@ class Ascii: StandardCommand() {
 
             for (y in 0 until outputHeight) {
                 for (x in 0 until outputWidth) {
-                    val charDistribution = (sampledColors[y][x] - minAvg).coerceIn(0f, 1f) / colorRange * (gradient.length - 1)
+                    val charDistribution = ((sampledColors[y][x] - minAvg) / colorRange).coerceIn(0f, 1f) * (gradient.length - 1)
                     val char = gradient[charDistribution.toInt()]
 
                     ascii.append(char)
