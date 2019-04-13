@@ -24,6 +24,7 @@ dependencies {
     implementation 'org.javacord:javacord:3.0.3'
     compile 'org.javacord:javacord:3.0.3'
     compile "org.xerial:sqlite-jdbc:3.27.2.1"
+    compile "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-imagesearch:1.0.1"
     // compile 'org.tensorflow:tensorflow:1.12.0'
 }
 

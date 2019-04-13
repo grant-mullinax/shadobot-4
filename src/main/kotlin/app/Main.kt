@@ -42,6 +42,7 @@ fun main() {
     cBot.addProccess(Avatar())
     cBot.addProccess(Emote())
     cBot.addProccess(ImageToTxt())
+    cBot.addProccess(Img())
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
