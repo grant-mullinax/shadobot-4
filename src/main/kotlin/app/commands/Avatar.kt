@@ -9,6 +9,6 @@ class Avatar: StandardCommand() {
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val target = event.message.mentionedUsers[0]
-        event.channel.sendMessage(target.avatar.url.toString())
+        event.channel.sendMessage("${target.avatar.url}?size=512")
     }
 }

@@ -4,16 +4,17 @@ import app.commands.*
 import app.commands.Doge.AddDoge
 import app.commands.Doge.ListDoge
 import app.commands.Doge.RandomDoge
+import app.commands.Trash.HKCommand
+import app.commands.Trash.HKCommand2
+import app.commands.Trash.Wapoosh2
+import app.commands.Trash.Whenisay
 import app.commands.Vote.Vote
 import app.commands.WhackyNumbers.*
 import org.javacord.api.DiscordApiBuilder
-import org.javacord.api.entity.emoji.Emoji
 import java.io.File
 
 fun main() {
-    val token = File("token.txt").readText(Charsets.UTF_8)
-
-    val api = DiscordApiBuilder().setToken(token).login().join()
+    val api = DiscordApiBuilder().setToken(Keys.discord).login().join()
 
     val cBot = CommunistBot(api)
     cBot.addProccess(Filter())
