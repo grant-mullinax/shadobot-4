@@ -4,10 +4,10 @@ import app.commands.Abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Isanyonethere: StandardCommand() {
-    override val commandName = "test"
+class Version: StandardCommand() {
+    override val commandName = "Version"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        event.channel.sendMessage("what up brooooo")
+        event.channel.sendMessage("0412223211")
     }
 }

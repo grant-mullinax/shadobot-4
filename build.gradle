@@ -24,11 +24,21 @@ dependencies {
     implementation 'org.javacord:javacord:3.0.3'
     compile 'org.javacord:javacord:3.0.3'
     compile "org.xerial:sqlite-jdbc:3.27.2.1"
-    compile "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-imagesearch:1.0.1"
+    compile "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-imagesearch:1.0.2"
     // compile 'org.tensorflow:tensorflow:1.12.0'
 }
 
+def getBuildTime() {
+    def date = new Date()
+    def formattedDate = date.format('MMddHHmmss')
+    return formattedDate
+}
+
 jar {
+    File file = new File("src/main/kotlin/app/commands/Version.kt")
+    String replaced = file.getText( 'UTF-8' ).replaceAll( "VERSION", getBuildTime() )
+    file.write( replaced, 'UTF-8' )
+
     manifest {
         attributes 'Main-Class': 'app.MainKt'
     }
@@ -36,7 +46,12 @@ jar {
     // This line of code recursively collects and copies all of a project's files
     // and adds them to the JAR itself. One can extend this task, to skip certain
     // files or particular types at will
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } } {
+        exclude 'META-INF/MANIFEST.MF'
+        exclude 'META-INF/*.SF'
+        exclude 'META-INF/*.DSA'
+        exclude 'META-INF/*.RSA'
+    }
 }
 
 compileKotlin {

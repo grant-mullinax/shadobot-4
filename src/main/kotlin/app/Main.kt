@@ -11,7 +11,6 @@ import app.commands.Trash.Whenisay
 import app.commands.Vote.Vote
 import app.commands.WhackyNumbers.*
 import org.javacord.api.DiscordApiBuilder
-import java.io.File
 
 fun main() {
     val api = DiscordApiBuilder().setToken(Keys.discord).login().join()
@@ -41,8 +40,9 @@ fun main() {
     cBot.addProccess(HKCommand2())
     cBot.addProccess(Avatar())
     cBot.addProccess(Emote())
-    cBot.addProccess(ImageToTxt())
+    cBot.addProccess(Ascii())
     cBot.addProccess(Img())
+    cBot.addProccess(Version())
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
