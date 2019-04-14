@@ -25,7 +25,7 @@ dependencies {
     compile 'org.javacord:javacord:3.0.3'
     compile "org.xerial:sqlite-jdbc:3.27.2.1"
     compile "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-imagesearch:1.0.2"
-    // compile 'org.tensorflow:tensorflow:1.12.0'
+    compile "org.slf4j:slf4j-simple:1.7.26"
 }
 
 def getBuildTime() {

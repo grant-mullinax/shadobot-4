@@ -1,6 +1,7 @@
 package app.commands
 
 import app.commands.Abstract.StandardCommand
+import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.core.event.message.MessageCreateEventImpl
@@ -14,15 +15,14 @@ class Ascii: StandardCommand() {
     override val commandName = "txtify"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        val splitMsg = event.message.content.split(" ")
-        val gradient = if (splitMsg.size > 2) splitMsg[2] else "─▒▓▓█"
+        val parser = MessageParameterParser(event.message)
 
-        val scale = if (splitMsg.size > 1) min(splitMsg[1].toFloat(), 1f) else 1f
-        val image = event.message.attachments.first().downloadAsImage().join()
+        val scale = parser.extractFloat(1f)
+        val gradient = parser.extractString("─▒▓▓█")
+
+        val image = parser.extractImageAndLookUpward()
 
         event.channel.sendMessage(imgToText(image, scale, gradient))
-
-        val message = MessageCreateEventImpl(event.message)
     }
 
     companion object {

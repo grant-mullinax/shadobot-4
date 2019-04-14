@@ -26,11 +26,13 @@ class Img: StandardCommand() {
             .withCount(1)
             .execute()
 
-        val url = URL(imageResults.value().first().contentUrl())
+        val firstResult = imageResults.value().first()
+        val urlText = firstResult.contentUrl()
+        val url = URL(urlText)
         val image = ImageIO.read(url)
 
         val message = MessageBuilder()
-        message.addAttachment(image, "result.png")
+        message.addAttachment(image, "result.${firstResult.encodingFormat()}")
 
         message.send(event.channel)
     }
