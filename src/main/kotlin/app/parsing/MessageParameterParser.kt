@@ -106,7 +106,7 @@ class MessageParameterParser {
 
     fun extractImageAndLookUpward() : BufferedImage {
         // todo could be probably made a bit more efficient
-        channel.getMessages(6).join().reversed().forEach { m ->
+        channel.getMessages(10).join().reversed().forEach { m ->
             if (m.attachments.size > 0) {
                 return m.attachments.first().downloadAsImage().join()
             }
