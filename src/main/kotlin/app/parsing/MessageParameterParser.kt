@@ -1,10 +1,11 @@
 package app.parsing
 
-import org.javacord.api.DiscordApi
+import org.javacord.api.entity.channel.ServerTextChannel
 import org.javacord.api.entity.channel.TextChannel
 import org.javacord.api.entity.message.Message
 import org.javacord.api.entity.message.MessageAttachment
 import org.javacord.api.entity.message.MessageAuthor
+import org.javacord.api.entity.server.Server
 import org.javacord.api.entity.user.User
 import java.awt.image.BufferedImage
 import java.lang.NumberFormatException
@@ -18,6 +19,7 @@ class MessageParameterParser {
     private var parameterText: String
     private val attachments: LinkedList<MessageAttachment>
     private val channel: TextChannel
+    private val server: Server?
     private var mentionedUsers: LinkedList<User>
 
     constructor(message: Message) {
@@ -27,6 +29,7 @@ class MessageParameterParser {
         author = message.author
         attachments = LinkedList(message.attachments)
         channel = message.channel
+        server = message.server.orElseGet { null }
         mentionedUsers = LinkedList(message.mentionedUsers)
     }
 
@@ -109,5 +112,13 @@ class MessageParameterParser {
         }
 
         throw ParserFailureException("Failed to parse image")
+    }
+
+    fun getServer() : Server {
+        return server ?: throw ParserFailureException("Message was not sent in server")
+    }
+
+    fun getServerTextChannel() : ServerTextChannel {
+        return channel.asServerTextChannel().orElseThrow { ParserFailureException("Message was not sent in server") }
     }
 }

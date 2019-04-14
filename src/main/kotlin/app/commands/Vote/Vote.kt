@@ -1,6 +1,7 @@
 package app.commands.Vote
 
 import app.commands.Abstract.StandardCommand
+import app.parsing.MessageParameterParser
 import app.util.stringToColor
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.channel.VoiceChannel
@@ -18,15 +19,15 @@ class Vote: StandardCommand() {
     override val commandName = "vote"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        val splitMsg = event.message.content.split(" ")
+        val parser = MessageParameterParser(event.message)
         val server = event.server.get()
 
         var poll: Poll?
 
-        when (splitMsg[1]) {
+        when (parser.extractString()) {
             "rename" -> {
-                val target = event.message.mentionedUsers[0]
-                val newName = splitMsg.subList(3, splitMsg.size).reduce { a, b -> "$a $b" }
+                val target = parser.extractMentionedUser()
+                val newName = parser.extractMultiSpaceString()
                 poll = Poll(
                     votesRequired = 4,
                     englishAction = "rename ${target.name} to $newName",
@@ -35,7 +36,7 @@ class Vote: StandardCommand() {
                     })
             }
             "kick" -> {
-                val target = event.message.mentionedUsers[0]
+                val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 5,
                     englishAction = "kick ${target.name}",
                     action = {
@@ -43,7 +44,7 @@ class Vote: StandardCommand() {
                     })
             }
             "ban" -> {
-                val target = event.message.mentionedUsers[0]
+                val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 7,
                     englishAction = "ban ${target.name}",
                     action = {
@@ -51,7 +52,9 @@ class Vote: StandardCommand() {
                     })
             }
             "unban" -> {
-                val target = event.server.get().bans.join().find { b -> b.user.id.toString().startsWith(splitMsg[2]) }!!.user
+                val target = parser.getServer().bans.join().find {
+                        b -> b.user.id.toString().startsWith(parser.extractString())
+                }!!.user
                 poll = Poll(votesRequired = 4,
                     englishAction = "unban ${target.name}",
                     action = {
@@ -59,7 +62,7 @@ class Vote: StandardCommand() {
                     })
             }
             "gag" -> {
-                val target = event.message.mentionedUsers[0]
+                val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 3,
                     englishAction = "mute ${target.name}",
                     action = {
@@ -67,7 +70,7 @@ class Vote: StandardCommand() {
                     })
             }
             "cool" -> {
-                val target = event.message.mentionedUsers[0]
+                val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 7,
                     englishAction = "make ${target.name} cool",
                     action = {
@@ -75,20 +78,22 @@ class Vote: StandardCommand() {
                     })
             }
             "createrole" -> {
-                val rankName = splitMsg.subList(3, splitMsg.size).reduce { a, b -> "$a $b" }
-                val color = stringToColor(splitMsg[2])
+                val rankName = parser.extractMultiSpaceString()
+                val colorString = parser.extractString()
+                val color = stringToColor(colorString)
                 poll = Poll(votesRequired = 3,
-                    englishAction = "create role $rankName with color ${splitMsg[2]}",
+                    englishAction = "create role $rankName with color $colorString",
                     action = {
                         server.createRoleBuilder().setColor(color).setName(rankName).create()
                     })
             }
             "rolecolor" -> {
-                val rankName = splitMsg.subList(3, splitMsg.size).reduce { a, b -> "$a $b" }
-                val rank = event.server.get().roles.find { r -> r.name == rankName }
-                val color = stringToColor(splitMsg[2])
+                val rankName = parser.extractMultiSpaceString()
+                val rank = parser.getServer().roles.find { r -> r.name == rankName }
+                val colorString = parser.extractString()
+                val color = stringToColor(colorString)
                 poll = Poll(votesRequired = 3,
-                    englishAction = "change $rankName to ${splitMsg[2]}",
+                    englishAction = "change $rankName to $colorString",
                     action = {
                         rank?.updateColor(color)
                     })
@@ -102,24 +107,26 @@ class Vote: StandardCommand() {
                     })
             }
             "delete" -> {
-                val message = api.getMessageById(splitMsg[2], event.channel).get()
+                val idString = parser.extractString()
+                val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "delete message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/${splitMsg[2]}",
+                    englishAction = "delete message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/${idString}",
                     action = {
                         message.delete()
                     })
             }
             "pin" -> {
-                val message = api.getMessageById(splitMsg[2], event.channel).get()
+                val idString = parser.extractString()
+                val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/${splitMsg[2]}",
+                    englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/$idString",
                     action = {
                         message.pin()
                     })
             }
             "promote" -> {
-                val target = event.message.mentionedUsers[0]
-                val rankName = splitMsg.subList(3, splitMsg.size).reduce { a, b -> "$a $b" }
+                val target = parser.extractMentionedUser()
+                val rankName = parser.extractMultiSpaceString()
                 val rank = event.server.get().roles.find { r -> r.name == rankName }
                 if (rank!!.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
                     event.channel.sendMessage("nice try r word")
@@ -132,8 +139,8 @@ class Vote: StandardCommand() {
                     })
             }
             "demote" -> {
-                val target = event.message.mentionedUsers[0]
-                val rankName = splitMsg.subList(3, splitMsg.size).reduce { a, b -> "$a $b" }
+                val target = parser.extractMentionedUser()
+                val rankName = parser.extractMultiSpaceString()
                 val rank = event.server.get().roles.find { r -> r.name == rankName }
                 if (rank!!.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
                     event.channel.sendMessage("nice try r word")
@@ -146,8 +153,8 @@ class Vote: StandardCommand() {
                     })
             }
             "motd" -> {
-                val serverChannel = event.channel.asServerTextChannel().get()
-                val newTopic = splitMsg.subList(2, splitMsg.size).reduce { a, b -> "$a $b" }
+                val serverChannel = parser.getServerTextChannel()
+                val newTopic = parser.extractMultiSpaceString()
                 poll = Poll(
                     votesRequired = 3,
                     englishAction = "change the motd of ${serverChannel.name} to $newTopic",
@@ -157,8 +164,8 @@ class Vote: StandardCommand() {
                 )
             }
             "channelname" -> {
-                val serverChannel = event.channel.asServerTextChannel().get()
-                val newTopic = splitMsg.subList(2, splitMsg.size).reduce { a, b -> "$a $b" }
+                val serverChannel = parser.getServerTextChannel()
+                val newTopic = parser.extractMultiSpaceString()
                 poll = Poll(
                     votesRequired = 3,
                     englishAction = "change the channel name of ${serverChannel.name} to $newTopic",
@@ -168,7 +175,7 @@ class Vote: StandardCommand() {
                 )
             }
             "slay" -> {
-                val target = event.message.mentionedUsers[0]
+                val target = parser.extractMentionedUser()
 
                 if (target.connectedVoiceChannels.isNullOrEmpty())
                     return
