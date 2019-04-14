@@ -2,6 +2,7 @@ package app.commands
 
 import app.Keys
 import app.commands.Abstract.StandardCommand
+import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 import com.microsoft.azure.cognitiveservices.search.imagesearch.BingImageSearchManager
@@ -16,8 +17,8 @@ class Img: StandardCommand() {
     override val commandName = "img"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        val splitMsg = event.message.content.split(" ")
-        val search = splitMsg.subList(1, splitMsg.size).reduce { a, b -> "$a $b" }
+        val parser = MessageParameterParser(event.message)
+        val search = parser.extractMultiSpaceString()
         val imageResults = client.bingImages().search()
             .withQuery(search)
             .withMarket("en-us")

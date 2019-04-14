@@ -1,6 +1,7 @@
 package app.commands
 
 import app.commands.Abstract.MessageProcess
+import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
@@ -13,9 +14,9 @@ class Dad: MessageProcess {
     }
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        val splitMsg = event.message.content.split(" ")
-        val longName = splitMsg.subList(2, splitMsg.size).reduce { a, b -> "$a $b" }
-        val newName = longName.substring(0, minOf(longName.length, 32))
+        val parser = MessageParameterParser(event.message)
+        val longName = parser.extractMultiSpaceString()
+        val newName = longName!!.substring(0, minOf(longName.length, 32))
 
         event.messageAuthor.asUser().get().updateNickname(event.server.get(), newName)
 

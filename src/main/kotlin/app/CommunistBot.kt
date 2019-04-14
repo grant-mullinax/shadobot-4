@@ -1,6 +1,7 @@
 package app
 
 import app.commands.Abstract.MessageProcess
+import app.parsing.ParserFailureException
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.channel.ServerTextChannel
 import org.javacord.api.entity.channel.VoiceChannel
@@ -30,7 +31,11 @@ class CommunistBot(private val api: DiscordApi) {
 
         for (process in processes) {
             if (process.qualifier(event)) {
-                process.action(event, api)
+                try {
+                    process.action(event, api)
+                } catch (ex: ParserFailureException) {
+                    event.channel.sendMessage(ex.message)
+                }
                 return
             }
         }
