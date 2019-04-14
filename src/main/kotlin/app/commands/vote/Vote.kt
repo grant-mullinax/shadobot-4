@@ -76,9 +76,10 @@ class Vote: StandardCommand() {
                     })
             }
             "createrole" -> {
-                val rankName = parser.extractMultiSpaceString()
                 val colorString = parser.extractString()
                 val color = stringToColor(colorString)
+
+                val rankName = parser.extractMultiSpaceString()
                 poll = Poll(votesRequired = 3,
                     englishAction = "create role $rankName with color $colorString",
                     action = {
@@ -86,13 +87,14 @@ class Vote: StandardCommand() {
                     })
             }
             "rolecolor" -> {
-                val rank = parser.extractRoleFromString()
                 val colorString = parser.extractString()
                 val color = stringToColor(colorString)
+
+                val rank = parser.extractRoleFromString()
                 poll = Poll(votesRequired = 3,
                     englishAction = "change ${rank.name} to $colorString",
                     action = {
-                        rank?.updateColor(color)
+                        rank.updateColor(color)
                     })
             }
             "troll" -> {
@@ -123,6 +125,7 @@ class Vote: StandardCommand() {
             }
             "promote" -> {
                 val target = parser.extractMentionedUser()
+
                 val rank = parser.extractRoleFromString()
                 if (rank.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
                     event.channel.sendMessage("nice try r word")
