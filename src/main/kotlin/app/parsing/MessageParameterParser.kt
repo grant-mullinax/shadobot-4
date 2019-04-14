@@ -48,18 +48,18 @@ class MessageParameterParser {
         return splitText[0]
     }
 
-    fun extractString(default: String? = null) : String {
-        return extractNullableString() ?: default ?: throw ParserFailureException("Parameter not supplied")
+    fun extractString(description: String, default: String? = null) : String {
+        return extractNullableString() ?: default ?: throw ParserFailureException("$description not supplied")
     }
 
-    fun extractMultiSpaceString(default: String? = null) : String {
-        if (parameterText == "") default ?: throw ParserFailureException("Parameter not supplied")
+    fun extractMultiSpaceString(description: String, default: String? = null) : String {
+        if (parameterText == "") default ?: throw ParserFailureException("$description not supplied")
         val parameter = parameterText
         parameterText = ""
         return parameter
     }
 
-    private fun <T : Any> extractGeneric(f: (String) -> T, default: T?, typeName: String) : T {
+    private fun <T : Any> extractGeneric(f: (String) -> T, default: T?, description: String, typeName: String) : T {
         val text = extractNullableString()
 
         try {
@@ -67,21 +67,21 @@ class MessageParameterParser {
                 if (default != null) {
                     return default
                 } else {
-                    throw ParserFailureException("Failed to supply $typeName")
+                    throw ParserFailureException("Failed to supply $description")
                 }
             }
             return f(text)
         } catch (ex: NumberFormatException) {
-            throw ParserFailureException("Failed to parse $typeName from $text")
+            throw ParserFailureException("Failed to parse $typeName $description from $text")
         }
     }
 
-    fun extractInt(default: Int? = null) : Int {
-        return extractGeneric(String::toInt, default,"integer")
+    fun extractInt(description: String, default: Int? = null) : Int {
+        return extractGeneric(String::toInt, default, description,"integer")
     }
 
-    fun extractFloat(default: Float? = null) : Float {
-        return extractGeneric(String::toFloat, default, "decimal")
+    fun extractFloat(description: String, default: Float? = null) : Float {
+        return extractGeneric(String::toFloat, default, description, "decimal")
     }
 
     fun extractMentionedUser(defaultToAuthor: Boolean = false) : User {
@@ -116,7 +116,7 @@ class MessageParameterParser {
     }
 
     fun extractRoleFromString() : Role {
-        val roleName = extractMultiSpaceString()
+        val roleName = extractMultiSpaceString("role name")
         return (server ?: throw ParserFailureException("Message was not sent in server"))
             .roles.find { r -> r.name == roleName } ?: throw ParserFailureException("Could not find role $roleName")
     }

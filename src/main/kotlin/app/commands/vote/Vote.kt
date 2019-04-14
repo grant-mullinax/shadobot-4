@@ -22,10 +22,10 @@ class Vote: StandardCommand() {
 
         var poll: Poll?
 
-        when (parser.extractString()) {
+        when (parser.extractString("vote type")) {
             "rename" -> {
                 val target = parser.extractMentionedUser()
-                val newName = parser.extractMultiSpaceString()
+                val newName = parser.extractMultiSpaceString("new name")
                 poll = Poll(
                     votesRequired = 4,
                     englishAction = "rename ${target.name} to $newName",
@@ -51,7 +51,7 @@ class Vote: StandardCommand() {
             }
             "unban" -> {
                 val target = parser.getServer().bans.join().find {
-                        b -> b.user.id.toString().startsWith(parser.extractString())
+                        b -> b.user.id.toString().startsWith(parser.extractString("user id"))
                 }!!.user
                 poll = Poll(votesRequired = 4,
                     englishAction = "unban ${target.name}",
@@ -76,10 +76,10 @@ class Vote: StandardCommand() {
                     })
             }
             "createrole" -> {
-                val colorString = parser.extractString()
+                val colorString = parser.extractString("color")
                 val color = stringToColor(colorString)
 
-                val rankName = parser.extractMultiSpaceString()
+                val rankName = parser.extractMultiSpaceString("role name")
                 poll = Poll(votesRequired = 3,
                     englishAction = "create role $rankName with color $colorString",
                     action = {
@@ -87,7 +87,7 @@ class Vote: StandardCommand() {
                     })
             }
             "rolecolor" -> {
-                val colorString = parser.extractString()
+                val colorString = parser.extractString("color")
                 val color = stringToColor(colorString)
 
                 val rank = parser.extractRoleFromString()
@@ -106,7 +106,7 @@ class Vote: StandardCommand() {
                     })
             }
             "delete" -> {
-                val idString = parser.extractString()
+                val idString = parser.extractString("message id")
                 val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
                     englishAction = "delete message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/${idString}",
@@ -115,7 +115,7 @@ class Vote: StandardCommand() {
                     })
             }
             "pin" -> {
-                val idString = parser.extractString()
+                val idString = parser.extractString("message id")
                 val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
                     englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/$idString",
@@ -152,7 +152,7 @@ class Vote: StandardCommand() {
             }
             "motd" -> {
                 val serverChannel = parser.getServerTextChannel()
-                val newTopic = parser.extractMultiSpaceString()
+                val newTopic = parser.extractMultiSpaceString("motd")
                 poll = Poll(
                     votesRequired = 3,
                     englishAction = "change the motd of ${serverChannel.name} to $newTopic",
@@ -163,7 +163,7 @@ class Vote: StandardCommand() {
             }
             "channelname" -> {
                 val serverChannel = parser.getServerTextChannel()
-                val newTopic = parser.extractMultiSpaceString()
+                val newTopic = parser.extractMultiSpaceString("channel name")
                 poll = Poll(
                     votesRequired = 3,
                     englishAction = "change the channel name of ${serverChannel.name} to $newTopic",

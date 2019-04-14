@@ -15,8 +15,8 @@ class Ascii: StandardCommand() {
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
 
-        val scale = parser.extractFloat(1f)
-        val gradient = parser.extractString("─▒▓▓█")
+        val scale = parser.extractFloat("scale",1f)
+        val gradient = parser.extractString("gradient", "─▒▓▓█")
 
         val image = parser.extractImageAndLookUpward()
 

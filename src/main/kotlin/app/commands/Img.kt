@@ -18,7 +18,7 @@ class Img: StandardCommand() {
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
-        val search = parser.extractMultiSpaceString()
+        val search = parser.extractMultiSpaceString("search")
         val imageResults = client.bingImages().search()
             .withQuery(search)
             .withMarket("en-us")
