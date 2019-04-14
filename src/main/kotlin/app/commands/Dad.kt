@@ -16,7 +16,7 @@ class Dad: MessageProcess {
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
         val longName = parser.extractMultiSpaceString()
-        val newName = longName!!.substring(0, minOf(longName.length, 32))
+        val newName = longName.substring(0, minOf(longName.length, 32))
 
         event.messageAuthor.asUser().get().updateNickname(event.server.get(), newName)
 

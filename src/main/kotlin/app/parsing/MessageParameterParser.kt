@@ -116,7 +116,7 @@ class MessageParameterParser {
     }
 
     fun extractRoleFromString() : Role {
-        val roleName = extractString()
+        val roleName = extractMultiSpaceString()
         return (server ?: throw ParserFailureException("Message was not sent in server"))
             .roles.find { r -> r.name == roleName } ?: throw ParserFailureException("Could not find role $roleName")
     }

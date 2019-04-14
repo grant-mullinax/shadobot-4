@@ -140,7 +140,7 @@ class Vote: StandardCommand() {
             "demote" -> {
                 val target = parser.extractMentionedUser()
                 val rank = parser.extractRoleFromString()
-                if (rank!!.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
+                if (rank.permissions!!.allowedPermission.contains(PermissionType.ADMINISTRATOR)) {
                     event.channel.sendMessage("nice try r word")
                     return
                 }
