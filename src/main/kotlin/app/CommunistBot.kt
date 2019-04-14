@@ -1,24 +1,15 @@
 package app
 
-import app.commands.Abstract.MessageProcess
+import app.commands.abstract.MessageProcess
 import app.parsing.ParserFailureException
 import org.javacord.api.DiscordApi
-import org.javacord.api.entity.channel.ServerTextChannel
-import org.javacord.api.entity.channel.VoiceChannel
-import org.javacord.api.entity.message.Message
-import org.javacord.api.entity.message.embed.EmbedBuilder
-import org.javacord.api.entity.permission.PermissionType
 import org.javacord.api.entity.server.Server
 import org.javacord.api.entity.user.User
 import org.javacord.api.event.message.MessageCreateEvent
-import org.javacord.api.event.message.reaction.ReactionAddEvent
 import org.javacord.api.event.server.member.ServerMemberEvent
 import org.javacord.api.event.server.member.ServerMemberJoinEvent
-import org.javacord.api.event.server.member.ServerMemberLeaveEvent
 import org.javacord.api.event.server.role.UserRoleAddEvent
 import org.javacord.api.event.server.role.UserRoleRemoveEvent
-import kotlin.math.abs
-import kotlin.random.Random
 
 class CommunistBot(private val api: DiscordApi) {
     private val processes = mutableListOf<MessageProcess>()

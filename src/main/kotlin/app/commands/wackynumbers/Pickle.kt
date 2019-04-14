@@ -1,19 +1,20 @@
-package app.commands.WhackyNumbers
+package app.commands.wackynumbers
 
-import app.commands.Abstract.StandardCommand
+import app.commands.abstract.StandardCommand
 import app.util.format
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Devil: StandardCommand() {
-    override val commandName = "devil"
+class Pickle: StandardCommand() {
+    override val commandName = "pickle"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val mentionedSomeone = event.message.mentionedUsers.isEmpty()
         val id = if (mentionedSomeone) event.messageAuthor.id else event.message.mentionedUsers[0].id
-        val targetName = if (mentionedSomeone) "You are" else "${event.message.mentionedUsers[0].name} is"
+        val targetName = if (mentionedSomeone) "Your" else "${event.message.mentionedUsers[0].name}'s"
 
         event.channel.sendMessage(
-            ":fire: :japanese_goblin: $targetName ${((((id + 9966) % 10000) / 100f)).format(2)}% devil :japanese_goblin: :fire:")
+            "$targetName pickle size is ${(((id % 100) / 100f) * 12).format(2)} inches"
+        )
     }
 }

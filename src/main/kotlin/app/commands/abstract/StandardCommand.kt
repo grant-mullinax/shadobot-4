@@ -1,4 +1,4 @@
-package app.commands.Abstract
+package app.commands.abstract
 
 import org.javacord.api.event.message.MessageCreateEvent
 

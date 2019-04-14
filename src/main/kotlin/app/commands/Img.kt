@@ -1,7 +1,7 @@
 package app.commands
 
 import app.Keys
-import app.commands.Abstract.StandardCommand
+import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent

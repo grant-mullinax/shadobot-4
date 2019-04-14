@@ -1,7 +1,6 @@
-package app.commands.WhackyNumbers
+package app.commands.wackynumbers
 
-import app.commands.Abstract.StandardCommand
-import app.util.format
+import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 

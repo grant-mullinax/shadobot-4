@@ -1,6 +1,6 @@
-package app.commands.Trash
+package app.commands.trash
 
-import app.commands.Abstract.MessageProcess
+import app.commands.abstract.MessageProcess
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 

@@ -1,4 +1,4 @@
-package app.commands.Vote
+package app.commands.vote
 
 class Poll {
     val votesRequired: Int

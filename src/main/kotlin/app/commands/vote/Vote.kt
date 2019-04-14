@@ -1,6 +1,6 @@
-package app.commands.Vote
+package app.commands.vote
 
-import app.commands.Abstract.StandardCommand
+import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
 import app.util.stringToColor
 import org.javacord.api.DiscordApi
@@ -9,8 +9,6 @@ import org.javacord.api.entity.message.Message
 import org.javacord.api.entity.permission.PermissionType
 import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.api.event.message.reaction.ReactionAddEvent
-import java.lang.Math.log
-import kotlin.math.roundToInt
 import kotlin.random.Random
 
 class Vote: StandardCommand() {

@@ -1,6 +1,6 @@
 package app.commands
 
-import app.commands.Abstract.StandardCommand
+import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.channel.ServerTextChannel
 import org.javacord.api.entity.message.embed.EmbedBuilder

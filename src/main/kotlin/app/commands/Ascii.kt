@@ -1,12 +1,10 @@
 package app.commands
 
-import app.commands.Abstract.StandardCommand
+import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
-import org.javacord.core.event.message.MessageCreateEventImpl
 import java.awt.image.BufferedImage
-import java.lang.Float.min
 import java.lang.StringBuilder
 import java.util.*
 import kotlin.math.sqrt

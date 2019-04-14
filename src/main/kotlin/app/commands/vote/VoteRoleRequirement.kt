@@ -1,4 +1,4 @@
-package app.commands.Vote
+package app.commands.vote
 
 import kotlin.math.roundToInt
 

@@ -1,11 +1,10 @@
 package app
 
-import app.commands.Abstract.StandardCommand
+import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.Color
-import java.awt.image.BufferedImage
 
 class ImgTest: StandardCommand() {
     override val commandName = "imgtest"

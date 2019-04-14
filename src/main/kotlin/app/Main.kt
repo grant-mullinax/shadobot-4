@@ -4,12 +4,12 @@ import app.commands.*
 import app.commands.Doge.AddDoge
 import app.commands.Doge.ListDoge
 import app.commands.Doge.RandomDoge
-import app.commands.Trash.HKCommand
-import app.commands.Trash.HKCommand2
-import app.commands.Trash.Wapoosh2
-import app.commands.Trash.Whenisay
-import app.commands.Vote.Vote
-import app.commands.WhackyNumbers.*
+import app.commands.trash.HKCommand
+import app.commands.trash.HKCommand2
+import app.commands.trash.Wapoosh2
+import app.commands.trash.Whenisay
+import app.commands.vote.Vote
+import app.commands.wackynumbers.*
 import org.javacord.api.DiscordApiBuilder
 
 fun main() {
