@@ -5,6 +5,7 @@ import org.javacord.api.entity.channel.TextChannel
 import org.javacord.api.entity.message.Message
 import org.javacord.api.entity.message.MessageAttachment
 import org.javacord.api.entity.message.MessageAuthor
+import org.javacord.api.entity.permission.Role
 import org.javacord.api.entity.server.Server
 import org.javacord.api.entity.user.User
 import java.awt.image.BufferedImage
@@ -112,6 +113,12 @@ class MessageParameterParser {
         }
 
         throw ParserFailureException("Failed to parse image")
+    }
+
+    fun extractRoleFromString() : Role {
+        val roleName = extractString()
+        return (server ?: throw ParserFailureException("Message was not sent in server"))
+            .roles.find { r -> r.name == roleName } ?: throw ParserFailureException("Could not find role $roleName")
     }
 
     fun getServer() : Server {

@@ -86,18 +86,17 @@ class Vote: StandardCommand() {
                     })
             }
             "rolecolor" -> {
-                val rankName = parser.extractMultiSpaceString()
-                val rank = parser.getServer().roles.find { r -> r.name == rankName }
+                val rank = parser.extractRoleFromString()
                 val colorString = parser.extractString()
                 val color = stringToColor(colorString)
                 poll = Poll(votesRequired = 3,
-                    englishAction = "change $rankName to $colorString",
+                    englishAction = "change ${rank.name} to $colorString",
                     action = {
                         rank?.updateColor(color)
                     })
             }
             "troll" -> {
-                val target = event.message.mentionedUsers[0]
+                val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 3,
                     englishAction = "troll ${target.name}",
                     action = {
@@ -124,28 +123,26 @@ class Vote: StandardCommand() {
             }
             "promote" -> {
                 val target = parser.extractMentionedUser()
-                val rankName = parser.extractMultiSpaceString()
-                val rank = event.server.get().roles.find { r -> r.name == rankName }
-                if (rank!!.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
+                val rank = parser.extractRoleFromString()
+                if (rank.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
                     event.channel.sendMessage("nice try r word")
                     return
                 }
                 poll = Poll(votesRequired = voteRoleRequirement(rank.permissions.allowedBitmask),
-                    englishAction = "promote ${target.name} to $rankName",
+                    englishAction = "promote ${target.name} to ${rank.name}",
                     action = {
                         target.addRole(rank)
                     })
             }
             "demote" -> {
                 val target = parser.extractMentionedUser()
-                val rankName = parser.extractMultiSpaceString()
-                val rank = event.server.get().roles.find { r -> r.name == rankName }
+                val rank = parser.extractRoleFromString()
                 if (rank!!.permissions!!.allowedPermission!!.contains(PermissionType.ADMINISTRATOR)) {
                     event.channel.sendMessage("nice try r word")
                     return
                 }
                 poll = Poll(votesRequired = voteRoleRequirement(rank.permissions.allowedBitmask) + 1,
-                    englishAction = "demote ${target.name} from $rankName",
+                    englishAction = "demote ${target.name} from ${rank.name}",
                     action = {
                         target.removeRole(rank)
                     })
