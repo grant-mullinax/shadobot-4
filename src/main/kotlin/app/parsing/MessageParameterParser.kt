@@ -84,6 +84,10 @@ class MessageParameterParser {
         return extractGeneric(String::toFloat, default, description, "decimal")
     }
 
+    fun extractDouble(description: String, default: Double? = null) : Double {
+        return extractGeneric(String::toDouble, default, description, "decimal (double)")
+    }
+
     fun extractMentionedUser(defaultToAuthor: Boolean = false) : User {
         if (mentionedUsers.size == 0) {
             if (defaultToAuthor) {
@@ -92,6 +96,7 @@ class MessageParameterParser {
                 throw ParserFailureException("Failed to parse mention")
             }
         }
+        extractString("user mention")
         return mentionedUsers.remove()
     }
 

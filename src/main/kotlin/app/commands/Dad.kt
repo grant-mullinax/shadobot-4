@@ -15,6 +15,7 @@ class Dad: MessageProcess {
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
+        parser.extractString("???") // todo fix hack
         val longName = parser.extractMultiSpaceString("dad name hehe secret!!!")
         val newName = longName.substring(0, minOf(longName.length, 32))
 

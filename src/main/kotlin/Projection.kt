@@ -1,5 +1,11 @@
-class Projection(private val x: Float, private val y: Float, private val z: Float,
-                 private val xr: Float, private val yr: Float) : Point(x, y ,z) {
+import kotlin.math.cos
+import kotlin.math.sin
+
+class Projection(private val point: Point, private val rx: Float, private val ry: Float) {
+
+    // plane -> 0 = ((x-point.x, (y-point.y), (z-point.z)) dot product normal
+    fun getNormal() : Point {
+        return Point(sin(rx)*cos(ry), sin(rx)*sin(ry), cos(rx))
+    }
 
 }
-

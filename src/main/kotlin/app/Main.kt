@@ -19,30 +19,33 @@ fun main() {
     cBot.addProccess(Filter())
     cBot.addProccess(Dad())
 
-    cBot.addProccess(Ugly())
-    cBot.addProccess(BiggestLove())
-    cBot.addProccess(Broadcast(api))
-    cBot.addProccess(Love())
-    cBot.addProccess(RussianRoulette())
-    cBot.addProccess(Pickle())
-    cBot.addProccess(Slay())
-    cBot.addProccess(Wapoosh2())
-    cBot.addProccess(Wapoosh())
-    cBot.addProccess(Isanyonethere())
-    cBot.addProccess(Whenisay(cBot))
-    cBot.addProccess(RoleInfo())
-    cBot.addProccess(RandomDoge())
-    cBot.addProccess(Speak())
-    cBot.addProccess(Devil())
-    cBot.addProccess(Angel())
-    cBot.addProccess(Alignment())
-    cBot.addProccess(HKCommand())
-    cBot.addProccess(HKCommand2())
-    cBot.addProccess(Avatar())
-    cBot.addProccess(Emote())
-    cBot.addProccess(Ascii())
-    cBot.addProccess(Img())
-    cBot.addProccess(Version())
+    listOf(
+        Ugly(),
+        BiggestLove(),
+        Broadcast(api),
+        Love(),
+        RussianRoulette(),
+        Pickle(),
+        Slay(),
+        Wapoosh2(),
+        Wapoosh(),
+        Isanyonethere(),
+        Whenisay(cBot),
+        RoleInfo(),
+        RandomDoge(),
+        Speak(),
+        Devil(),
+        Angel(),
+        Alignment(),
+        HKCommand(),
+        HKCommand2(),
+        Avatar(),
+        Emote(),
+        Ascii(),
+        Img(),
+        Version(),
+        Rotate()
+    ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge()
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
