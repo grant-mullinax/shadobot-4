@@ -10,6 +10,7 @@ import app.commands.trash.Wapoosh2
 import app.commands.trash.Whenisay
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
+import com.sun.javafx.geom.Edge
 import org.javacord.api.DiscordApiBuilder
 
 fun main() {
@@ -40,11 +41,14 @@ fun main() {
         HKCommand(),
         HKCommand2(),
         Avatar(),
-        Emote(),
         Ascii(),
         Img(),
         Version(),
-        Rotate()
+        RotateColor(),
+        Rotate(),
+        Edges(),
+        Emote(),
+        Fry()
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge()
