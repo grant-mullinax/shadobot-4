@@ -1,16 +1,16 @@
 package app
 
 import app.commands.*
-import app.commands.Doge.AddDoge
-import app.commands.Doge.ListDoge
-import app.commands.Doge.RandomDoge
+import app.commands.doge.AddDoge
+import app.commands.doge.ListDoge
+import app.commands.doge.RandomDoge
+import app.commands.image.*
 import app.commands.trash.HKCommand
 import app.commands.trash.HKCommand2
 import app.commands.trash.Wapoosh2
 import app.commands.trash.Whenisay
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
-import com.sun.javafx.geom.Edge
 import org.javacord.api.DiscordApiBuilder
 
 fun main() {
@@ -43,6 +43,7 @@ fun main() {
         Avatar(),
         Ascii(),
         Img(),
+        Drip(),
         Version(),
         RotateColor(),
         Rotate(),
@@ -63,18 +64,9 @@ fun main() {
     api.addMessageCreateListener(cBot::receiveMessage)
     api.addUserRoleAddListener(cBot::mikeyRoleHack)
 
-    api.addServerMemberLeaveListener(cBot::userLeaving)
     api.addServerMemberJoinListener(cBot::userJoining)
 
     println("---------- BOT ONLINE ----------")
 
     cBot.gatherRoles()
-
-    /*var file = File("path.txt")
-    file.createNewFile()
-
-    api.getChannelById(547303725706903552).get().asTextChannel().get().getMessages(999999999).join().forEach { s ->
-        if (!s.content.isBlank())
-            file.appendText(s.content + "\n")
-    }*/
 }

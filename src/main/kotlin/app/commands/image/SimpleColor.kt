@@ -1,4 +1,4 @@
-package app.util
+package app.commands.image
 
 import kotlin.math.abs
 
@@ -29,8 +29,12 @@ class SimpleColor {
         alpha = a
     }
 
-    fun darknessToAlpha(): SimpleColor{
-        return SimpleColor(red, green, blue, (red + green + blue)/3)
+    fun darkness(): Int {
+        return (red + green + blue) / 3
+    }
+
+    fun darknessToAlpha(): SimpleColor {
+        return SimpleColor(red, green, blue, darkness())
     }
 
     fun toInt(): Int {

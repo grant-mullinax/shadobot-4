@@ -1,22 +1,12 @@
-package app.commands
+package app.commands.image
 
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
-import app.util.SimpleColor
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
-import java.awt.Color
 import java.awt.image.BufferedImage
-import java.io.File
-import java.lang.Exception
-import java.lang.StringBuilder
-import java.util.*
 import java.util.stream.IntStream
-import java.util.stream.StreamSupport.intStream
-import javax.imageio.ImageIO
-import kotlin.collections.HashSet
-import kotlin.math.sqrt
 
 class RotateColor: StandardCommand() {
     override val commandName = "rotatecolor"

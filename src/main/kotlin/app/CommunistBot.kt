@@ -70,10 +70,6 @@ class CommunistBot(private val api: DiscordApi) {
         gatherRolesForUser(event.user, event.server)
     }
 
-    fun userLeaving(event: ServerMemberEvent) {
-        println("bye")
-    }
-
     fun userJoining(event: ServerMemberJoinEvent) {
         roles[event.user.id]?.forEach {
                 id ->

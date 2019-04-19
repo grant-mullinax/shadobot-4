@@ -1,4 +1,4 @@
-package app.commands
+package app.commands.image
 
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
