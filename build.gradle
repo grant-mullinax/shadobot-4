@@ -30,13 +30,13 @@ dependencies {
 
 def getBuildTime() {
     def date = new Date()
-    def formattedDate = date.format('MMddHHmmss')
+    def formattedDate = date.format('MM/dd HH:mm:ss')
     return formattedDate
 }
 
 jar {
     File file = new File("src/main/kotlin/app/commands/Version.kt")
-    String replaced = file.getText( 'UTF-8' ).replaceAll( "VERSION", getBuildTime() )
+    String replaced = file.getText( 'UTF-8' ).replaceAll( "(?<=Built on: )([0-9]|\\/|:| )*", getBuildTime() )
     file.write( replaced, 'UTF-8' )
 
     manifest {

@@ -63,11 +63,7 @@ class MessageParameterParser {
 
         try {
             if (text == null) {
-                if (default != null) {
-                    return default
-                } else {
-                    throw ParserFailureException("Failed to supply $description")
-                }
+                return default ?: throw ParserFailureException("Failed to supply $description")
             }
             return f(text)
         } catch (ex: NumberFormatException) {

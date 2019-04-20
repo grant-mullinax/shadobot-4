@@ -5,9 +5,9 @@ import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
 class Version : StandardCommand() {
-    override val commandName = "Version"
+    override val commandName = "version"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
-        event.channel.sendMessage("0412223211")
+        event.channel.sendMessage("Built on: 04/20 14:20:47")
     }
 }
