@@ -44,6 +44,7 @@ fun main() {
         Avatar(),
         Ascii(),
         Img(),
+        AniDrip(),
         Drip(),
         Blur(),
         Version(),
