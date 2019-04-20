@@ -40,16 +40,6 @@ class CommunistBot(private val api: DiscordApi) {
         processes.add(process)
     }
 
-    fun receiveUserDeparture(event: ServerMemberJoinEvent) {
-        if (event.server.id != 544737205315305481) {
-            return
-        }
-
-        event.user.sendMessage("Hate to see you leave! Please consider filling out this survey o3o\n" +
-        "https://docs.google.com/forms/d/e/1FAIpQLSfBmiwfGZURv5KSTlYy6FHYztB_68gdCsUXMTNagEFC8HY9_Q/viewform\n\n" +
-        "https://discord.gg/XSt5pV4")
-    }
-
     fun mikeyRoleHack(event: UserRoleAddEvent) {
         if (event.server.id != 544737205315305481) {
             return
@@ -64,10 +54,6 @@ class CommunistBot(private val api: DiscordApi) {
 
         val rank = event.server.getRoleById(544742523319353364).get()
         event.user.addRole(rank)
-    }
-
-    fun roleRemoved(event: UserRoleRemoveEvent) {
-        gatherRolesForUser(event.user, event.server)
     }
 
     fun userJoining(event: ServerMemberJoinEvent) {
