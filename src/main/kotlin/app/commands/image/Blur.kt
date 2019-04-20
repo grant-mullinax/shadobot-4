@@ -8,8 +8,8 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
 import java.util.stream.IntStream
 
-class Edges: StandardCommand() {
-    override val commandName = "edges"
+class Blur: StandardCommand() {
+    override val commandName = "blur"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
@@ -25,20 +25,20 @@ class Edges: StandardCommand() {
 
         IntStream.range(0, image.width).parallel().forEach {x ->
             IntStream.range(0, image.height).forEach {y ->
-                var outputColor = SimpleColor(image.getRGB(x, y))
+                var outputColor = SimpleColor(image.getRGB(x, y))/(directions.size)
                 for (direction in directions) {
                     if (direction.first == 0 && direction.second == 0) continue
                     if ((x + direction.first > image.width-1 || x + direction.first < 0) ||
                         (y + direction.second > image.height-1 || y + direction.second < 0)) continue
-                        outputColor -= SimpleColor(
+                        outputColor += SimpleColor(
                             image.getRGB(
                                 x + direction.first,
                                 y + direction.second
                             )
-                        ) / (directions.size - 1)
+                        ) / (directions.size)
                 }
 
-                outputImage.setRGB(x, y, (outputColor * brighten).abs().darknessToAlpha().toInt())
+                outputImage.setRGB(x, y, outputColor.abs().darknessToAlpha().toInt())
             }
         }
 

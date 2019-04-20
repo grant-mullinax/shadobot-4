@@ -8,8 +8,8 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
 import java.util.stream.IntStream
 
-class Edges: StandardCommand() {
-    override val commandName = "edges"
+class Oblivion: StandardCommand() {
+    override val commandName = "oblivion"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
@@ -17,8 +17,6 @@ class Edges: StandardCommand() {
         val brighten = parser.extractInt("brighten scale", 10)
 
         val image = parser.extractImageAndLookUpward()
-
-        val outputImage = BufferedImage(image.width, image.height, image.type)
 
         val range = (-resolution..resolution)
         val directions = range.flatMap { x -> range.map { y -> Pair(x, y) } }
@@ -35,15 +33,15 @@ class Edges: StandardCommand() {
                                 x + direction.first,
                                 y + direction.second
                             )
-                        ) / (directions.size - 1)
+                        ) / (directions.size-1)
                 }
 
-                outputImage.setRGB(x, y, (outputColor * brighten).abs().darknessToAlpha().toInt())
+                image.setRGB(x, y, (outputColor * brighten).abs().darknessToAlpha().toInt())
             }
         }
 
         val message = MessageBuilder()
-        message.addAttachment(outputImage, "result.png")
+        message.addAttachment(image, "result.png")
 
         message.send(event.channel)
     }

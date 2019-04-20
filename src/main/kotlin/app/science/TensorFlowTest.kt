@@ -1,4 +1,4 @@
-package app
+package app.science
 
 import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
