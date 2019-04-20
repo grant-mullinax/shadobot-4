@@ -5,7 +5,7 @@ import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Avatar: StandardCommand() {
+class Avatar : StandardCommand() {
     override val commandName = "avatar"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {

@@ -4,7 +4,7 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class RussianRoulette: StandardCommand() {
+class RussianRoulette : StandardCommand() {
     override val commandName = "rnr"
     var bullet = 0
 

@@ -4,7 +4,7 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Listbans: StandardCommand() {
+class Listbans : StandardCommand() {
     override val commandName = "aretheyugly"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {

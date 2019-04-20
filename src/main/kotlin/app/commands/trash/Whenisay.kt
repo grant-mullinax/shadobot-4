@@ -5,7 +5,7 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Whenisay(private val cBot: CommunistBot): StandardCommand() {
+class Whenisay(private val cBot: CommunistBot) : StandardCommand() {
     override val commandName = "whenisay"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {

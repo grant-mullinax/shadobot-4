@@ -25,8 +25,8 @@ class CommunistBot(private val api: DiscordApi) {
                 } catch (ex: ParserFailureException) {
                     event.channel.sendMessage(ex.message)
                 } catch (ex: Exception) {
-                    val stackTrace = ex.stackTrace.map { e -> "in ${e.className}/${e.methodName} at line ${e.lineNumber}"}
-                        .reduce{a, b -> "$a\n$b"}
+                    val stackTrace = ex.stackTrace.map { e -> "in ${e.className}/${e.methodName} at line ${e.lineNumber}" }
+                            .reduce { a, b -> "$a\n$b" }
                     event.channel.sendMessage("unusual error\n${ex.message}\n$stackTrace")
                 }
                 return
@@ -34,7 +34,7 @@ class CommunistBot(private val api: DiscordApi) {
         }
     }
 
-    fun addProccess(process: MessageProcess){
+    fun addProccess(process: MessageProcess) {
         processes.add(process)
     }
 
@@ -55,8 +55,7 @@ class CommunistBot(private val api: DiscordApi) {
     }
 
     fun userJoining(event: ServerMemberJoinEvent) {
-        roles[event.user.id]?.forEach {
-                id ->
+        roles[event.user.id]?.forEach { id ->
             event.user.addRole(api.getRoleById(id).get())
         }
     }

@@ -4,7 +4,7 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Alignment: StandardCommand() {
+class Alignment : StandardCommand() {
     override val commandName = "alignment"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -28,6 +28,6 @@ class Alignment: StandardCommand() {
         }
 
         event.channel.sendMessage(
-            "$targetName alignment is $alignment")
+                "$targetName alignment is $alignment")
     }
 }

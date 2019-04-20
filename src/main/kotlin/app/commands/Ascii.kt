@@ -8,13 +8,13 @@ import java.awt.image.BufferedImage
 import java.util.*
 import kotlin.math.sqrt
 
-class Ascii: StandardCommand() {
+class Ascii : StandardCommand() {
     override val commandName = "txtify"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
 
-        val scale = parser.extractFloat("scale",1f)
+        val scale = parser.extractFloat("scale", 1f)
         val gradient = parser.extractString("gradient", "─▒▓▓█")
 
         val image = parser.extractImageAndLookUpward()
@@ -34,8 +34,8 @@ class Ascii: StandardCommand() {
             val sampledColors = mutableListOf<MutableList<Float>>()
 
             var edgeSamples = outputHeight * outputWidth / 200
-            var max = LinkedList<Float>(List(edgeSamples) {0f})
-            var min = LinkedList<Float>(List(edgeSamples) {(0xff * 3).toFloat()})
+            var max = LinkedList<Float>(List(edgeSamples) { 0f })
+            var min = LinkedList<Float>(List(edgeSamples) { (0xff * 3).toFloat() })
 
             for (y in 0 until outputHeight) {
                 sampledColors.add(mutableListOf())

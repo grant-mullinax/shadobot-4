@@ -4,7 +4,7 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class RoleInfo: StandardCommand() {
+class RoleInfo : StandardCommand() {
     override val commandName = "roleinfo"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {

@@ -4,7 +4,7 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Emote: StandardCommand() {
+class Emote : StandardCommand() {
     override val commandName = "e"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {

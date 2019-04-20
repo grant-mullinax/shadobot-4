@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
 import java.util.stream.IntStream
 
-class Blur: StandardCommand() {
+class Blur : StandardCommand() {
     override val commandName = "blur"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -22,19 +22,19 @@ class Blur: StandardCommand() {
         val range = (-resolution..resolution)
         val directions = range.flatMap { x -> range.map { y -> Pair(x, y) } }
 
-        IntStream.range(0, image.width).parallel().forEach {x ->
-            IntStream.range(0, image.height).forEach {y ->
-                var outputColor = SimpleColor(image.getRGB(x, y))/(directions.size)
+        IntStream.range(0, image.width).parallel().forEach { x ->
+            IntStream.range(0, image.height).forEach { y ->
+                var outputColor = SimpleColor(image.getRGB(x, y)) / (directions.size)
                 for (direction in directions) {
                     if (direction.first == 0 && direction.second == 0) continue
-                    if ((x + direction.first > image.width-1 || x + direction.first < 0) ||
-                        (y + direction.second > image.height-1 || y + direction.second < 0)) continue
-                        outputColor += SimpleColor(
+                    if ((x + direction.first > image.width - 1 || x + direction.first < 0) ||
+                            (y + direction.second > image.height - 1 || y + direction.second < 0)) continue
+                    outputColor += SimpleColor(
                             image.getRGB(
-                                x + direction.first,
-                                y + direction.second
+                                    x + direction.first,
+                                    y + direction.second
                             )
-                        ) / (directions.size - 1)
+                    ) / (directions.size - 1)
                 }
 
                 outputImage.setRGB(x, y, outputColor.abs().toInt())

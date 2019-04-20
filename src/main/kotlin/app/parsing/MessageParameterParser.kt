@@ -11,7 +11,7 @@ import org.javacord.api.entity.user.User
 import java.awt.image.BufferedImage
 import java.util.*
 
-class ParserFailureException(message:String): Exception(message)
+class ParserFailureException(message: String) : Exception(message)
 
 class MessageParameterParser {
     private val author: MessageAuthor
@@ -24,7 +24,7 @@ class MessageParameterParser {
 
     constructor(message: Message) {
         fullText = message.content
-        val splitText = message.content.split(' ', limit =  2)
+        val splitText = message.content.split(' ', limit = 2)
         parameterText = if (splitText.size > 1) splitText[1] else ""
         author = message.author
         attachments = LinkedList(message.attachments)
@@ -33,7 +33,7 @@ class MessageParameterParser {
         mentionedUsers = LinkedList(message.mentionedUsers)
     }
 
-    private fun extractNullableString() : String? {
+    private fun extractNullableString(): String? {
         if (parameterText == "")
             return null
 
@@ -47,18 +47,18 @@ class MessageParameterParser {
         return splitText[0]
     }
 
-    fun extractString(description: String, default: String? = null) : String {
+    fun extractString(description: String, default: String? = null): String {
         return extractNullableString() ?: default ?: throw ParserFailureException("$description not supplied")
     }
 
-    fun extractMultiSpaceString(description: String, default: String? = null) : String {
+    fun extractMultiSpaceString(description: String, default: String? = null): String {
         if (parameterText == "") default ?: throw ParserFailureException("$description not supplied")
         val parameter = parameterText
         parameterText = ""
         return parameter
     }
 
-    private fun <T : Any> extractGeneric(f: (String) -> T, default: T?, description: String, typeName: String) : T {
+    private fun <T : Any> extractGeneric(f: (String) -> T, default: T?, description: String, typeName: String): T {
         val text = extractNullableString()
 
         try {
@@ -75,19 +75,19 @@ class MessageParameterParser {
         }
     }
 
-    fun extractInt(description: String, default: Int? = null) : Int {
-        return extractGeneric(String::toInt, default, description,"integer")
+    fun extractInt(description: String, default: Int? = null): Int {
+        return extractGeneric(String::toInt, default, description, "integer")
     }
 
-    fun extractFloat(description: String, default: Float? = null) : Float {
+    fun extractFloat(description: String, default: Float? = null): Float {
         return extractGeneric(String::toFloat, default, description, "decimal")
     }
 
-    fun extractDouble(description: String, default: Double? = null) : Double {
+    fun extractDouble(description: String, default: Double? = null): Double {
         return extractGeneric(String::toDouble, default, description, "decimal (double)")
     }
 
-    fun extractMentionedUser(defaultToAuthor: Boolean = false) : User {
+    fun extractMentionedUser(defaultToAuthor: Boolean = false): User {
         if (mentionedUsers.size == 0) {
             if (defaultToAuthor) {
                 return author.asUser().get()
@@ -99,16 +99,16 @@ class MessageParameterParser {
         return mentionedUsers.remove()
     }
 
-    fun getAuthorAsUser() : User {
+    fun getAuthorAsUser(): User {
         return author.asUser().orElseThrow { ParserFailureException("Author was not user") }
     }
 
-    fun extractImage() : BufferedImage {
+    fun extractImage(): BufferedImage {
         if (attachments.size == 0) throw ParserFailureException("Failed to parse image")
         return attachments.remove().downloadAsImage().join()
     }
 
-    fun extractImageAndLookUpward() : BufferedImage {
+    fun extractImageAndLookUpward(): BufferedImage {
         // todo could be probably made a bit more efficient
         channel.getMessages(10).join().reversed().forEach { m ->
             if (m.attachments.size > 0) {
@@ -119,17 +119,17 @@ class MessageParameterParser {
         throw ParserFailureException("Failed to parse image")
     }
 
-    fun extractRoleFromString() : Role {
+    fun extractRoleFromString(): Role {
         val roleName = extractMultiSpaceString("role name")
         return (server ?: throw ParserFailureException("Message was not sent in server"))
-            .roles.find { r -> r.name == roleName } ?: throw ParserFailureException("Could not find role $roleName")
+                .roles.find { r -> r.name == roleName } ?: throw ParserFailureException("Could not find role $roleName")
     }
 
-    fun getServer() : Server {
+    fun getServer(): Server {
         return server ?: throw ParserFailureException("Message was not sent in server")
     }
 
-    fun getServerTextChannel() : ServerTextChannel {
+    fun getServerTextChannel(): ServerTextChannel {
         return channel.asServerTextChannel().orElseThrow { ParserFailureException("Message was not sent in server") }
     }
 }

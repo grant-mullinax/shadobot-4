@@ -6,12 +6,12 @@ import org.javacord.api.entity.channel.ServerTextChannel
 import org.javacord.api.entity.message.embed.EmbedBuilder
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Broadcast: StandardCommand {
+class Broadcast : StandardCommand {
     override val commandName = "broadcast"
     private val broadcastChannelIds = listOf(548312509355130883, 366665395395887126)
     private val broadcastChannels: List<ServerTextChannel>
 
-    constructor(api: DiscordApi){
+    constructor(api: DiscordApi) {
         this.broadcastChannels = broadcastChannelIds.map { c -> api.getServerTextChannelById(c).get() }
     }
 

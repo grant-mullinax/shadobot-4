@@ -7,7 +7,7 @@ import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
 import java.util.stream.IntStream
 
-class Drip: StandardCommand() {
+class Drip : StandardCommand() {
     override val commandName = "drip"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -26,9 +26,9 @@ class Drip: StandardCommand() {
         )*/
 
         val range = (-2..2)
-        val directions = range.flatMap { x -> range.map { y -> Coordinate(x+1, y) } }.shuffled()
+        val directions = range.flatMap { x -> range.map { y -> Coordinate(x + 1, y) } }.shuffled()
 
-        IntStream.range(0, (image.width-1)/dripWidth).forEach {x ->
+        IntStream.range(0, (image.width - 1) / dripWidth).forEach { x ->
             var point = Coordinate(x * dripWidth, 0)
             var lastDirection = Coordinate(0, 1)
             var grad = 255f
@@ -40,9 +40,9 @@ class Drip: StandardCommand() {
                     val movingTo = Coordinate(point.x + direction.x, point.y + direction.y)
 
                     if ((-direction.x == lastDirection.x && -direction.y == lastDirection.y) ||
-                        (visted.contains(movingTo)) ||
-                        (movingTo.x > image.width-1 || movingTo.x < 0) ||
-                        (movingTo.y > image.height-1 || movingTo.y < 0)
+                            (visted.contains(movingTo)) ||
+                            (movingTo.x > image.width - 1 || movingTo.x < 0) ||
+                            (movingTo.y > image.height - 1 || movingTo.y < 0)
                     ) continue
 
                     val darkness = SimpleColor(image.getRGB(movingTo.x, movingTo.y)).darkness().toFloat()

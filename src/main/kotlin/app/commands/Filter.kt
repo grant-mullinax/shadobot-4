@@ -4,7 +4,7 @@ import app.commands.abstract.MessageProcess
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Filter: MessageProcess {
+class Filter : MessageProcess {
     private val nRegex: Regex = Regex("(^|[^a-z])ni+[^ ]{0,4}g+e*[^ ]{0,4}r( |\$)", RegexOption.IGNORE_CASE)
 
     override fun qualifier(event: MessageCreateEvent): Boolean {
@@ -15,6 +15,6 @@ class Filter: MessageProcess {
         event.message.delete()
         val role = event.server.get().roles.find { r -> r.name == "n-word sayer" }
         event.messageAuthor.asUser().get().addRole(role)
-        event.messageAuthor.asUser().get().removeRole(api.getRoleById( 555490458948730897).get())
+        event.messageAuthor.asUser().get().removeRole(api.getRoleById(555490458948730897).get())
     }
 }

@@ -5,7 +5,7 @@ import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Dad: MessageProcess {
+class Dad : MessageProcess {
     override fun qualifier(event: MessageCreateEvent): Boolean {
         /*return event.messageContent.startsWith("im ", ignoreCase = true) ||
                 event.messageContent.startsWith("i'm ", ignoreCase = true) ||

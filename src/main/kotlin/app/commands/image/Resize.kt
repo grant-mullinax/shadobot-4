@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage
 import kotlin.math.abs
 import kotlin.math.roundToInt
 
-class Resize: StandardCommand() {
+class Resize : StandardCommand() {
     override val commandName = "resize"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -25,7 +25,7 @@ class Resize: StandardCommand() {
         val op = AffineTransformOp(transform, AffineTransformOp.TYPE_BILINEAR)
 
         val message = MessageBuilder()
-        val rotatedImage = BufferedImage(abs(image.width*scale).roundToInt(), abs(image.height*scale).roundToInt(), image.type)
+        val rotatedImage = BufferedImage(abs(image.width * scale).roundToInt(), abs(image.height * scale).roundToInt(), image.type)
         op.filter(image, rotatedImage)
         message.addAttachment(rotatedImage, "result.png")
 

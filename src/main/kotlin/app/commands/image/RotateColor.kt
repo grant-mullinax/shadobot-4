@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
 import java.util.stream.IntStream
 
-class RotateColor: StandardCommand() {
+class RotateColor : StandardCommand() {
     override val commandName = "rotatecolor"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -18,8 +18,8 @@ class RotateColor: StandardCommand() {
 
         val outputImage = BufferedImage(image.width, image.height, image.type)
 
-        IntStream.range(0, image.width).parallel().forEach {x ->
-            IntStream.range(0, image.height).forEach {y ->
+        IntStream.range(0, image.width).parallel().forEach { x ->
+            IntStream.range(0, image.height).forEach { y ->
                 val color = SimpleColor(image.getRGB(x, y))
                 outputImage.setRGB(x, y, SimpleColor(color.green, color.blue, color.red, 255).toInt())
             }

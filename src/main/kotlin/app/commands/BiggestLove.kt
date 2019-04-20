@@ -4,14 +4,14 @@ import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class BiggestLove: StandardCommand() {
+class BiggestLove : StandardCommand() {
     override val commandName = "biggestlove"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         var str = ""
         var lines = 0
 
-        for (user in event.server.get().members.sortedBy { u -> u.id % 100}) {
+        for (user in event.server.get().members.sortedBy { u -> u.id % 100 }) {
             str += "*${user.name} - ${user.id % 100}*\n"
             lines++
 

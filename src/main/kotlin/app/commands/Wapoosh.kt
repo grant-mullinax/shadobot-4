@@ -5,7 +5,7 @@ import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Wapoosh: StandardCommand() {
+class Wapoosh : StandardCommand() {
     override val commandName = "wapoosh"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {

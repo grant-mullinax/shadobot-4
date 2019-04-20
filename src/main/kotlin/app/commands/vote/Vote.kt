@@ -11,7 +11,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.api.event.message.reaction.ReactionAddEvent
 import kotlin.random.Random
 
-class Vote: StandardCommand() {
+class Vote : StandardCommand() {
     private val voteMessages = HashMap<Message, Poll>()
 
     override val commandName = "vote"
@@ -27,53 +27,53 @@ class Vote: StandardCommand() {
                 val target = parser.extractMentionedUser()
                 val newName = parser.extractMultiSpaceString("new name")
                 poll = Poll(
-                    votesRequired = 4,
-                    englishAction = "rename ${target.name} to $newName",
-                    action = {
-                        target.updateNickname(server, newName)
-                    })
+                        votesRequired = 4,
+                        englishAction = "rename ${target.name} to $newName",
+                        action = {
+                            target.updateNickname(server, newName)
+                        })
             }
             "kick" -> {
                 val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 5,
-                    englishAction = "kick ${target.name}",
-                    action = {
-                        server.kickUser(target)
-                    })
+                        englishAction = "kick ${target.name}",
+                        action = {
+                            server.kickUser(target)
+                        })
             }
             "ban" -> {
                 val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 7,
-                    englishAction = "ban ${target.name}",
-                    action = {
-                        server.banUser(target)
-                    })
+                        englishAction = "ban ${target.name}",
+                        action = {
+                            server.banUser(target)
+                        })
             }
             "unban" -> {
-                val target = parser.getServer().bans.join().find {
-                        b -> b.user.id.toString().startsWith(parser.extractString("user id"))
+                val target = parser.getServer().bans.join().find { b ->
+                    b.user.id.toString().startsWith(parser.extractString("user id"))
                 }!!.user
                 poll = Poll(votesRequired = 4,
-                    englishAction = "unban ${target.name}",
-                    action = {
-                        server.unbanUser(target)
-                    })
+                        englishAction = "unban ${target.name}",
+                        action = {
+                            server.unbanUser(target)
+                        })
             }
             "gag" -> {
                 val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "mute ${target.name}",
-                    action = {
-                        server.muteUser(target)
-                    })
+                        englishAction = "mute ${target.name}",
+                        action = {
+                            server.muteUser(target)
+                        })
             }
             "cool" -> {
                 val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 7,
-                    englishAction = "make ${target.name} cool",
-                    action = {
-                        event.message.channel.sendMessage("${target.name} is cool")
-                    })
+                        englishAction = "make ${target.name} cool",
+                        action = {
+                            event.message.channel.sendMessage("${target.name} is cool")
+                        })
             }
             "createrole" -> {
                 val colorString = parser.extractString("color")
@@ -81,10 +81,10 @@ class Vote: StandardCommand() {
 
                 val rankName = parser.extractMultiSpaceString("role name")
                 poll = Poll(votesRequired = 3,
-                    englishAction = "create role $rankName with color $colorString",
-                    action = {
-                        server.createRoleBuilder().setColor(color).setName(rankName).create()
-                    })
+                        englishAction = "create role $rankName with color $colorString",
+                        action = {
+                            server.createRoleBuilder().setColor(color).setName(rankName).create()
+                        })
             }
             "rolecolor" -> {
                 val colorString = parser.extractString("color")
@@ -92,36 +92,36 @@ class Vote: StandardCommand() {
 
                 val rank = parser.extractRoleFromString()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "change ${rank.name} to $colorString",
-                    action = {
-                        rank.updateColor(color)
-                    })
+                        englishAction = "change ${rank.name} to $colorString",
+                        action = {
+                            rank.updateColor(color)
+                        })
             }
             "troll" -> {
                 val target = parser.extractMentionedUser()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "troll ${target.name}",
-                    action = {
-                        server.deafenUser(target)
-                    })
+                        englishAction = "troll ${target.name}",
+                        action = {
+                            server.deafenUser(target)
+                        })
             }
             "delete" -> {
                 val idString = parser.extractString("message id")
                 val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "delete message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/${idString}",
-                    action = {
-                        message.delete()
-                    })
+                        englishAction = "delete message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/${idString}",
+                        action = {
+                            message.delete()
+                        })
             }
             "pin" -> {
                 val idString = parser.extractString("message id")
                 val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
-                    englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/$idString",
-                    action = {
-                        message.pin()
-                    })
+                        englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/$idString",
+                        action = {
+                            message.pin()
+                        })
             }
             "promote" -> {
                 val target = parser.extractMentionedUser()
@@ -132,10 +132,10 @@ class Vote: StandardCommand() {
                     return
                 }
                 poll = Poll(votesRequired = voteRoleRequirement(rank.permissions.allowedBitmask),
-                    englishAction = "promote ${target.name} to ${rank.name}",
-                    action = {
-                        target.addRole(rank)
-                    })
+                        englishAction = "promote ${target.name} to ${rank.name}",
+                        action = {
+                            target.addRole(rank)
+                        })
             }
             "demote" -> {
                 val target = parser.extractMentionedUser()
@@ -145,31 +145,31 @@ class Vote: StandardCommand() {
                     return
                 }
                 poll = Poll(votesRequired = voteRoleRequirement(rank.permissions.allowedBitmask) + 1,
-                    englishAction = "demote ${target.name} from ${rank.name}",
-                    action = {
-                        target.removeRole(rank)
-                    })
+                        englishAction = "demote ${target.name} from ${rank.name}",
+                        action = {
+                            target.removeRole(rank)
+                        })
             }
             "motd" -> {
                 val serverChannel = parser.getServerTextChannel()
                 val newTopic = parser.extractMultiSpaceString("motd")
                 poll = Poll(
-                    votesRequired = 3,
-                    englishAction = "change the motd of ${serverChannel.name} to $newTopic",
-                    action = {
-                        serverChannel.updateTopic(newTopic)
-                    }
+                        votesRequired = 3,
+                        englishAction = "change the motd of ${serverChannel.name} to $newTopic",
+                        action = {
+                            serverChannel.updateTopic(newTopic)
+                        }
                 )
             }
             "channelname" -> {
                 val serverChannel = parser.getServerTextChannel()
                 val newTopic = parser.extractMultiSpaceString("channel name")
                 poll = Poll(
-                    votesRequired = 3,
-                    englishAction = "change the channel name of ${serverChannel.name} to $newTopic",
-                    action = {
-                        serverChannel.updateName(newTopic)
-                    }
+                        votesRequired = 3,
+                        englishAction = "change the channel name of ${serverChannel.name} to $newTopic",
+                        action = {
+                            serverChannel.updateName(newTopic)
+                        }
                 )
             }
             "slay" -> {
@@ -179,16 +179,16 @@ class Vote: StandardCommand() {
                     return
 
                 poll = Poll(
-                    votesRequired = 3,
-                    englishAction = "slay ${target.name}",
-                    action = {
-                        var voiceChannel: VoiceChannel = target.connectedVoiceChannels.first()
-                        while (voiceChannel == target.connectedVoiceChannels.first()) {
-                            voiceChannel = server.voiceChannels[Random.nextInt(0, server.voiceChannels.size)]
-                        }
+                        votesRequired = 3,
+                        englishAction = "slay ${target.name}",
+                        action = {
+                            var voiceChannel: VoiceChannel = target.connectedVoiceChannels.first()
+                            while (voiceChannel == target.connectedVoiceChannels.first()) {
+                                voiceChannel = server.voiceChannels[Random.nextInt(0, server.voiceChannels.size)]
+                            }
 
-                        target.move(voiceChannel.asServerVoiceChannel().get())
-                    }
+                            target.move(voiceChannel.asServerVoiceChannel().get())
+                        }
                 )
             }
             else -> {
@@ -200,7 +200,7 @@ class Vote: StandardCommand() {
 
 
         event.channel.sendMessage(
-            "A vote to ${poll.englishAction} has started! ${poll.votesRequired} required").thenAcceptAsync{msg ->
+                "A vote to ${poll.englishAction} has started! ${poll.votesRequired} required").thenAcceptAsync { msg ->
             msg.addReaction("✅")
             voteMessages[msg] = poll
         }
@@ -216,7 +216,7 @@ class Vote: StandardCommand() {
             // first is mikey 2nd alan
             val cheater = ((event.user.id == 105639759593877504) || (event.user.id == 155061315977740288)) && event.emoji.equalsEmoji("\uD83C\uDF0B")
 
-            val yeses = message.reactions.find {r -> r.emoji.equalsEmoji("✅")}!!
+            val yeses = message.reactions.find { r -> r.emoji.equalsEmoji("✅") }!!
             if (yeses.count >= poll.votesRequired || cheater) {
                 poll.action()
                 message.edit("The vote to ${poll.englishAction} has passed with ${poll.votesRequired} votes!")

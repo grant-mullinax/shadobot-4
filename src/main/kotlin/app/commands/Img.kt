@@ -16,7 +16,7 @@ import javax.imageio.IIOException
 import javax.imageio.ImageIO
 
 
-class Img: StandardCommand() {
+class Img : StandardCommand() {
     private val client = BingImageSearchManager.authenticate(Keys.bingImages)
     override val commandName = "img"
 
@@ -24,10 +24,10 @@ class Img: StandardCommand() {
         val parser = MessageParameterParser(event.message)
         val search = parser.extractMultiSpaceString("search")
         val query = client.bingImages().search()
-            .withQuery(search)
-            .withMarket("en-us")
-            .withSafeSearch(if (event.channel.asServerTextChannel().get().isNsfw) SafeSearch.OFF else SafeSearch.MODERATE)
-            .withCount(1)
+                .withQuery(search)
+                .withMarket("en-us")
+                .withSafeSearch(if (event.channel.asServerTextChannel().get().isNsfw) SafeSearch.OFF else SafeSearch.MODERATE)
+                .withCount(1)
         val image = searchWithRetry(query, 0) ?: throw ParserFailureException("query failed for some reason")
 
         val message = MessageBuilder()
@@ -47,7 +47,7 @@ class Img: StandardCommand() {
         return try {
             ImageIO.read(url)
         } catch (ex: IIOException) {
-            searchWithRetry(query.withOffset(retry+1), retry+1)
+            searchWithRetry(query.withOffset(retry + 1), retry + 1)
         }
     }
 }

@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
 import java.util.stream.IntStream
 
-class Fry: StandardCommand() {
+class Fry : StandardCommand() {
     override val commandName = "fry"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -18,11 +18,11 @@ class Fry: StandardCommand() {
 
         val outputImage = BufferedImage(image.width, image.height, image.type)
 
-        IntStream.range(2, image.width-2).parallel().forEach {x ->
-            IntStream.range(2, image.height-2).forEach {y ->
+        IntStream.range(2, image.width - 2).parallel().forEach { x ->
+            IntStream.range(2, image.height - 2).forEach { y ->
                 var outputColor = image.getRGB(x, y)
                 for (direction in listOf(Pair(-2, 0), Pair(2, 0), Pair(0, -2), Pair(0, 2))) {
-                    outputColor += image.getRGB(x + direction.first, y + direction.second)/4
+                    outputColor += image.getRGB(x + direction.first, y + direction.second) / 4
                 }
                 outputImage.setRGB(x, y, outputColor or 0xFF000000.toInt())
             }

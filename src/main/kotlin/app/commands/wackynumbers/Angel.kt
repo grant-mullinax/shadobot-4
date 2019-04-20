@@ -5,7 +5,7 @@ import app.util.format
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 
-class Angel: StandardCommand() {
+class Angel : StandardCommand() {
     override val commandName = "angel"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -14,6 +14,6 @@ class Angel: StandardCommand() {
         val targetName = if (mentionedSomeone) "You are" else "${event.message.mentionedUsers[0].name} is"
 
         event.channel.sendMessage(
-            ":sparkler: :angel: $targetName ${((((id + 95189) % 100000) / 1000f)).format(2)}% angel :angel: :sparkler:")
+                ":sparkler: :angel: $targetName ${((((id + 95189) % 100000) / 1000f)).format(2)}% angel :angel: :sparkler:")
     }
 }

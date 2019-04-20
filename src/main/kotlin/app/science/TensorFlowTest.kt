@@ -17,8 +17,8 @@ fun main() {
     val height = image.height.toDouble()
 
     transform.translate(
-        sin(rotation) * height, //cos(rotation) * width + sin(rotation) * height,
-        0.0 // + sin(rotation) * width
+            sin(rotation) * height, //cos(rotation) * width + sin(rotation) * height,
+            0.0 // + sin(rotation) * width
     )
     transform.rotate(rotation, width, height)
     // transform.shear(1.0, 0.0)
