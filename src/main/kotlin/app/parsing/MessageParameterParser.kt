@@ -9,7 +9,6 @@ import org.javacord.api.entity.permission.Role
 import org.javacord.api.entity.server.Server
 import org.javacord.api.entity.user.User
 import java.awt.image.BufferedImage
-import java.lang.NumberFormatException
 import java.util.*
 
 class ParserFailureException(message:String): Exception(message)

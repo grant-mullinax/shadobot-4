@@ -8,11 +8,8 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
-import java.lang.StringBuilder
-import java.util.*
 import kotlin.math.cos
 import kotlin.math.sin
-import kotlin.math.sqrt
 
 class Rotate: StandardCommand() {
     override val commandName = "rotate"

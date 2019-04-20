@@ -6,10 +6,8 @@ import org.javacord.api.DiscordApi
 import org.javacord.api.entity.server.Server
 import org.javacord.api.entity.user.User
 import org.javacord.api.event.message.MessageCreateEvent
-import org.javacord.api.event.server.member.ServerMemberEvent
 import org.javacord.api.event.server.member.ServerMemberJoinEvent
 import org.javacord.api.event.server.role.UserRoleAddEvent
-import org.javacord.api.event.server.role.UserRoleRemoveEvent
 
 class CommunistBot(private val api: DiscordApi) {
     private val processes = mutableListOf<MessageProcess>()

@@ -5,7 +5,6 @@ import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
-import java.lang.StringBuilder
 import java.util.*
 import kotlin.math.sqrt
 

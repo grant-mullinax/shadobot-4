@@ -3,10 +3,7 @@ package app.commands
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
-import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
-import java.net.URL
-import javax.imageio.ImageIO
 
 class Avatar: StandardCommand() {
     override val commandName = "avatar"

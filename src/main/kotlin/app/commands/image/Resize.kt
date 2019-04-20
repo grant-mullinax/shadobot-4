@@ -8,9 +8,8 @@ import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.geom.AffineTransform
 import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
-import java.lang.StringBuilder
-import java.util.*
-import kotlin.math.*
+import kotlin.math.abs
+import kotlin.math.roundToInt
 
 class Resize: StandardCommand() {
     override val commandName = "resize"

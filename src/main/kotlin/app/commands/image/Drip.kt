@@ -5,11 +5,7 @@ import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
-import java.awt.Color
-import java.awt.image.BufferedImage
 import java.util.stream.IntStream
-import kotlin.math.abs
-import kotlin.math.min
 
 class Drip: StandardCommand() {
     override val commandName = "drip"

@@ -4,12 +4,12 @@ import app.Keys
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
 import app.parsing.ParserFailureException
-import org.javacord.api.DiscordApi
-import org.javacord.api.event.message.MessageCreateEvent
 import com.microsoft.azure.cognitiveservices.search.imagesearch.BingImageSearchManager
 import com.microsoft.azure.cognitiveservices.search.imagesearch.BingImages.BingImagesSearchDefinitionStages.WithExecute
 import com.microsoft.azure.cognitiveservices.search.imagesearch.models.SafeSearch
+import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
+import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
 import java.net.URL
 import javax.imageio.IIOException

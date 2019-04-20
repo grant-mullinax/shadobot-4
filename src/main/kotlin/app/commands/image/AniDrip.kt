@@ -2,15 +2,12 @@ package app.commands.image
 
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
-import org.javacord.api.DiscordApi
-import org.javacord.api.entity.message.MessageBuilder
-import org.javacord.api.event.message.MessageCreateEvent
-import java.util.stream.IntStream
 import app.util.GifSequenceWriter
+import org.javacord.api.DiscordApi
+import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
-import java.io.BufferedReader
 import java.io.File
-import java.io.InputStreamReader
+import java.util.stream.IntStream
 import javax.imageio.stream.FileImageOutputStream
 
 class AniDrip: StandardCommand() {

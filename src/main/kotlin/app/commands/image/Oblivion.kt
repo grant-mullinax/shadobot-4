@@ -5,10 +5,9 @@ import app.parsing.MessageParameterParser
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
-import java.awt.image.BufferedImage
 import java.util.stream.IntStream
 
-class Oblivion: StandardCommand() {
+class Oblivion : StandardCommand() {
     override val commandName = "oblivion"
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
@@ -21,19 +20,19 @@ class Oblivion: StandardCommand() {
         val range = (-resolution..resolution)
         val directions = range.flatMap { x -> range.map { y -> Pair(x, y) } }
 
-        IntStream.range(0, image.width).parallel().forEach {x ->
-            IntStream.range(0, image.height).forEach {y ->
+        IntStream.range(0, image.width).parallel().forEach { x ->
+            IntStream.range(0, image.height).forEach { y ->
                 var outputColor = SimpleColor(image.getRGB(x, y))
                 for (direction in directions) {
                     if (direction.first == 0 && direction.second == 0) continue
-                    if ((x + direction.first > image.width-1 || x + direction.first < 0) ||
-                        (y + direction.second > image.height-1 || y + direction.second < 0)) continue
-                        outputColor -= SimpleColor(
+                    if ((x + direction.first > image.width - 1 || x + direction.first < 0) ||
+                            (y + direction.second > image.height - 1 || y + direction.second < 0)) continue
+                    outputColor -= SimpleColor(
                             image.getRGB(
-                                x + direction.first,
-                                y + direction.second
+                                    x + direction.first,
+                                    y + direction.second
                             )
-                        ) / (directions.size-1)
+                    ) / (directions.size - 1)
                 }
 
                 image.setRGB(x, y, (outputColor * brighten).abs().darknessToAlpha().toInt())
