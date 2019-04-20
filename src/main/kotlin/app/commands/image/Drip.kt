@@ -17,6 +17,7 @@ class Drip: StandardCommand() {
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
         val dripWidth = parser.extractInt("drip width", 50)
+        val reset = parser.extractInt("reset chance", 10)
 
         val image = parser.extractImageAndLookUpward()
 
@@ -56,7 +57,7 @@ class Drip: StandardCommand() {
                 }
                 val movingTo = Coordinate(point.x + maxDirection.x, point.y + maxDirection.y)
                 if (visted.contains(movingTo) || maxColor == -1f) {
-                    if ((0..10).random() == 0)
+                    if ((0..reset).random() == 0)
                         break
                     grad = 255f
                     point = Coordinate((0 until image.width).random(), (0 until image.height).random())

@@ -14,7 +14,6 @@ class Blur: StandardCommand() {
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
         val resolution = parser.extractInt("edge resolution", 1)
-        val brighten = parser.extractInt("brighten scale", 10)
 
         val image = parser.extractImageAndLookUpward()
 
@@ -35,10 +34,10 @@ class Blur: StandardCommand() {
                                 x + direction.first,
                                 y + direction.second
                             )
-                        ) / (directions.size)
+                        ) / (directions.size - 1)
                 }
 
-                outputImage.setRGB(x, y, outputColor.abs().darknessToAlpha().toInt())
+                outputImage.setRGB(x, y, outputColor.abs().toInt())
             }
         }
 
