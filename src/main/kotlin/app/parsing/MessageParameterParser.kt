@@ -71,6 +71,16 @@ class MessageParameterParser {
         }
     }
 
+    fun extractBool(description: String, default: Boolean? = null): Boolean {
+        val text = extractNullableString()
+        if (text == "" && default != null)
+            return default
+
+        return text.equals("yes", ignoreCase = true) ||
+                text.equals("true", ignoreCase = true)  ||
+                text.equals("1", ignoreCase = true)
+    }
+
     fun extractInt(description: String, default: Int? = null): Int {
         return extractGeneric(String::toInt, default, description, "integer")
     }

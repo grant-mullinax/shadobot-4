@@ -1,4 +1,4 @@
-package app
+package app.science
 
 import app.commands.abstract.StandardCommand
 import org.javacord.api.DiscordApi
