@@ -9,13 +9,11 @@ class Dad : MessageProcess {
     override fun qualifier(event: MessageCreateEvent): Boolean {
         return event.messageContent.startsWith("im ", ignoreCase = true) ||
                event.messageContent.startsWith("i'm ", ignoreCase = true) ||
-               event.messageContent.startsWith("i’m ", ignoreCase = true) ||
-               event.messageContent.startsWith("i am", ignoreCase = true)
+               event.messageContent.startsWith("i’m ", ignoreCase = true)// ||
     }
 
     override fun action(event: MessageCreateEvent, api: DiscordApi) {
         val parser = MessageParameterParser(event.message)
-        parser.extractString("???") // todo fix hack
         val longName = parser.extractMultiSpaceString("dad name hehe secret!!!")
         val newName = longName.substring(0, minOf(longName.length, 32))
 
