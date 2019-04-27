@@ -15,6 +15,7 @@ class Bars : StandardCommand() {
         val parser = MessageParameterParser(event.message)
         val horizontal = parser.extractBool("horizontal toggle", false)
         val barWidth = parser.extractInt("bar width", 2)
+        val flipWidth = parser.extractInt("flip width", 1)
 
         val image = parser.extractImageAndLookUpward()
 
@@ -23,9 +24,9 @@ class Bars : StandardCommand() {
         IntStream.range(0, image.width).parallel().forEach { x ->
             IntStream.range(0, image.height).forEach { y ->
                 if (horizontal) {
-                    outputImage.setRGB(x, y, image.getRGB(if (y % barWidth == 0) image.width-x-1 else x, y))
+                    outputImage.setRGB(x, y, image.getRGB(if ((y/flipWidth) % barWidth == 0) image.width-x-1 else x, y))
                 } else {
-                    outputImage.setRGB(x, y, image.getRGB(x, if (x % barWidth == 0) image.height - y - 1 else y))
+                    outputImage.setRGB(x, y, image.getRGB(x, if ((x/flipWidth) % barWidth == 0) image.height - y - 1 else y))
                 }
             }
         }
