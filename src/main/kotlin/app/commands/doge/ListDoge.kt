@@ -9,7 +9,7 @@ import java.io.File
 class ListDoge : StandardCommand() {
     override val commandName = "querydoge"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         // todo fix maybe vuln?
         val dogeFolder = File("doge")
 

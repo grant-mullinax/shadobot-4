@@ -12,7 +12,7 @@ class Dad : MessageProcess {
                event.messageContent.startsWith("i’m ", ignoreCase = true)// ||
     }
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val longName = parser.extractMultiSpaceString("dad name hehe secret!!!")
         val newName = longName.substring(0, minOf(longName.length, 32))

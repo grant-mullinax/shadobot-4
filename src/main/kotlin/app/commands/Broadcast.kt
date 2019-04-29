@@ -15,7 +15,7 @@ class Broadcast : StandardCommand {
         this.broadcastChannels = broadcastChannelIds.map { c -> api.getServerTextChannelById(c).get() }
     }
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         if (event.messageContent.contains("@everyone")) {
             event.channel.sendMessage("nice try r word")
             return

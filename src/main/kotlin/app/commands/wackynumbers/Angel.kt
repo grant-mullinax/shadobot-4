@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Angel : StandardCommand() {
     override val commandName = "angel"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val mentionedSomeone = event.message.mentionedUsers.isEmpty()
         val id = if (mentionedSomeone) event.messageAuthor.id else event.message.mentionedUsers[0].id
         val targetName = if (mentionedSomeone) "You are" else "${event.message.mentionedUsers[0].name} is"

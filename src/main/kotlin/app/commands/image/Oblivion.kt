@@ -10,7 +10,7 @@ import java.util.stream.IntStream
 class Oblivion : StandardCommand() {
     override val commandName = "oblivion"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val resolution = parser.extractInt("edge resolution", 1)
         val brighten = parser.extractInt("brighten scale", 10)

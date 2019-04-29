@@ -8,7 +8,7 @@ import kotlin.math.abs
 class Love : StandardCommand() {
     override val commandName = "love"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val users = event.message.mentionedUsers
         var love = 100 - users.map { u -> u.id % 100 }.reduce { a, b -> abs(a - b) }
 

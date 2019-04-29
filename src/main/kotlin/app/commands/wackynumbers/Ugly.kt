@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Ugly : StandardCommand() {
     override val commandName = "uglycheck"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val mentionedSomeone = event.message.mentionedUsers.isEmpty()
         val idMod = (if (mentionedSomeone) event.messageAuthor.id else event.message.mentionedUsers[0].id) % 100
         val uglyScore = minOf(100 - idMod, idMod) / 5f

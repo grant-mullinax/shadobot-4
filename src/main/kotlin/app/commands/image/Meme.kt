@@ -17,7 +17,7 @@ import kotlin.math.sin
 class Meme : StandardCommand() {
     override val commandName = "meme"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val memeText = parser.extractMultiSpaceString("meme text").split("|")
         val topText = memeText[0]

@@ -9,7 +9,7 @@ import java.io.File
 class RandomDoge : StandardCommand() {
     override val commandName = "doge"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val dogeFolder = File("doge")
         var file: File
 

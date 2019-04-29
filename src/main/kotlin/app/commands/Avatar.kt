@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Avatar : StandardCommand() {
     override val commandName = "avatar"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         event.channel.sendMessage("${parser.extractMentionedUser(true).avatar.url}?size=512")
     }

@@ -13,7 +13,7 @@ import java.util.stream.IntStream
 class Bars : StandardCommand() {
     override val commandName = "bars"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         GlobalScope.launch {
             val parser = MessageParameterParser(event.message)
             val horizontal = parser.extractBool("horizontal toggle", false)

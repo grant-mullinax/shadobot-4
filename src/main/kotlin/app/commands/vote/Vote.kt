@@ -11,12 +11,12 @@ import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.api.event.message.reaction.ReactionAddEvent
 import kotlin.random.Random
 
-class Vote : StandardCommand() {
+class Vote(private val api: DiscordApi) : StandardCommand() {
     private val voteMessages = HashMap<Message, Poll>()
 
     override val commandName = "vote"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val server = event.server.get()
 

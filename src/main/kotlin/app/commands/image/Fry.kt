@@ -11,7 +11,7 @@ import java.util.stream.IntStream
 class Fry : StandardCommand() {
     override val commandName = "fry"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
 
         val image = parser.extractImageAndLookUpward()

@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Alignment : StandardCommand() {
     override val commandName = "alignment"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val mentionedSomeone = event.message.mentionedUsers.isEmpty()
         val id = if (mentionedSomeone) event.messageAuthor.id else event.message.mentionedUsers[0].id
         val targetName = if (mentionedSomeone) "Your" else "${event.message.mentionedUsers[0].name}'s"

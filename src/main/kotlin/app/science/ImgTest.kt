@@ -9,7 +9,7 @@ import java.awt.Color
 class ImgTest : StandardCommand() {
     override val commandName = "imgtest"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val image = event.message.attachments.first().downloadAsImage().join()
 
         val outputHeight = image.height / image.width * 50 + 1

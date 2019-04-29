@@ -14,7 +14,7 @@ import kotlin.math.roundToInt
 class Resize : StandardCommand() {
     override val commandName = "resize"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val image = parser.extractImageAndLookUpward()
         val scale = parser.extractDouble("rotation amount", 0.5)

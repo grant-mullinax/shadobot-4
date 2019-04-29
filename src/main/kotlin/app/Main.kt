@@ -5,8 +5,6 @@ import app.commands.doge.AddDoge
 import app.commands.doge.ListDoge
 import app.commands.doge.RandomDoge
 import app.commands.image.*
-import app.commands.trash.HKCommand
-import app.commands.trash.HKCommand2
 import app.commands.trash.Wapoosh2
 import app.commands.trash.Whenisay
 import app.commands.vote.Vote
@@ -38,8 +36,6 @@ fun main() {
             Devil(),
             Angel(),
             Alignment(),
-            HKCommand(),
-            HKCommand2(),
             Bars(),
             Resize(),
             Avatar(),
@@ -58,12 +54,12 @@ fun main() {
             Fry()
     ).forEach(cBot::addProccess)
 
-    val dogeProcess = AddDoge()
+    val dogeProcess = AddDoge(api)
     api.addReactionAddListener(dogeProcess::receiveVoteReaction)
     cBot.addProccess(dogeProcess)
     cBot.addProccess(ListDoge())
 
-    val voteProcess = Vote()
+    val voteProcess = Vote(api)
     api.addReactionAddListener(voteProcess::receiveVoteReaction)
     cBot.addProccess(voteProcess)
 

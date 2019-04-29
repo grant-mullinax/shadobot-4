@@ -20,7 +20,7 @@ class Img : StandardCommand() {
     private val client = BingImageSearchManager.authenticate(Keys.bingImages)
     override val commandName = "img"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val search = parser.extractMultiSpaceString("search")
         val query = client.bingImages().search()

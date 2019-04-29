@@ -11,7 +11,7 @@ class Filter : MessageProcess {
         return nRegex.containsMatchIn(event.messageContent)
     }
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         event.message.delete()
         val role = event.server.get().roles.find { r -> r.name == "n-word sayer" }
         event.messageAuthor.asUser().get().addRole(role)

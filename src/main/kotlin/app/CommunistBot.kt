@@ -22,7 +22,7 @@ class CommunistBot(private val api: DiscordApi) {
         for (process in processes) {
             if (process.qualifier(event)) {
                 try {
-                    process.action(event, api)
+                    process.action(event)
                 } catch (ex: ParserFailureException) {
                     event.channel.sendMessage(ex.message)
                 } catch (ex: Exception) {

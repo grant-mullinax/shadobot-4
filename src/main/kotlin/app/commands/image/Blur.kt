@@ -11,7 +11,7 @@ import java.util.stream.IntStream
 class Blur : StandardCommand() {
     override val commandName = "blur"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val resolution = parser.extractInt("edge resolution", 1)
 

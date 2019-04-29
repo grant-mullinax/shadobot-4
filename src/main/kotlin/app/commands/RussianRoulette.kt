@@ -8,7 +8,7 @@ class RussianRoulette : StandardCommand() {
     override val commandName = "rnr"
     var bullet = 0
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         if (bullet == 0) {
             event.channel.sendMessage("*squee... whrrrrrrrrr* (you just put the bullet in the gun and spun it)")
             bullet = (1..6).random()

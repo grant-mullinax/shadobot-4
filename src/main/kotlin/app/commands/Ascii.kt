@@ -11,7 +11,7 @@ import kotlin.math.sqrt
 class Ascii : StandardCommand() {
     override val commandName = "txtify"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
 
         val scale = parser.extractFloat("scale", 1f)

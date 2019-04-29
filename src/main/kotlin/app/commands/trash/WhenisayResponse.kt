@@ -10,7 +10,7 @@ class WhenisayResponse(private val trigger: String, private val reply: String) :
         return event.messageContent.startsWith(trigger, ignoreCase = true)
     }
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         event.channel.sendMessage(reply)
     }
 }

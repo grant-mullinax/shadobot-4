@@ -13,7 +13,7 @@ import java.util.stream.IntStream
 class Edges : StandardCommand() {
     override val commandName = "edges"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         GlobalScope.launch {
             val parser = MessageParameterParser(event.message)
             val resolution = parser.extractInt("edge resolution", 1)

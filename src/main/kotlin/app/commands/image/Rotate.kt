@@ -14,7 +14,7 @@ import kotlin.math.sin
 class Rotate : StandardCommand() {
     override val commandName = "rotate"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val image = parser.extractImageAndLookUpward()
         val rotation = parser.extractInt("rotation amount", 90) * 3.14159 / 180

@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class BiggestLove : StandardCommand() {
     override val commandName = "biggestlove"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         var str = ""
         var lines = 0
 

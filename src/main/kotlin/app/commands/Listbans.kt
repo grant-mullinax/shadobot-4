@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Listbans : StandardCommand() {
     override val commandName = "aretheyugly"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         var s = "*Users Banned:*\n"
         event.server.get().bans.thenAcceptAsync { bs ->
             bs.forEach { b ->

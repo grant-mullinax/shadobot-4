@@ -7,6 +7,6 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Speak : StandardCommand() {
     override val commandName = "speak"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
     }
 }

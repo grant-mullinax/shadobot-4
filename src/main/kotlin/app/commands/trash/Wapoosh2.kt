@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Wapoosh2 : StandardCommand() {
     override val commandName = "wapoosh2"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         var combo = -1
         var r = 0
         while (r != 1) {

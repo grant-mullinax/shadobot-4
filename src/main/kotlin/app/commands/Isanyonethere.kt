@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Isanyonethere : StandardCommand() {
     override val commandName = "test"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         event.channel.sendMessage("what up brooooo")
     }
 }

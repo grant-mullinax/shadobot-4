@@ -13,7 +13,7 @@ import javax.imageio.stream.FileImageOutputStream
 class AniDrip : StandardCommand() {
     override val commandName = "anidrip"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val dripWidth = parser.extractInt("drip width", 50)
         val reset = parser.extractInt("reset chance", 10)

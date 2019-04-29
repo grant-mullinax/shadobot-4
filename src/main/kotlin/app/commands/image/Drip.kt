@@ -10,7 +10,7 @@ import java.util.stream.IntStream
 class Drip : StandardCommand() {
     override val commandName = "drip"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
         val dripWidth = parser.extractInt("drip width", 50)
         val reset = parser.extractInt("reset chance", 10)

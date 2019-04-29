@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Wapoosh : StandardCommand() {
     override val commandName = "wapoosh"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
 
         val str = "*${parser.getAuthorAsUser().name} and ${parser.extractMentionedUser().name} wapoosh*"

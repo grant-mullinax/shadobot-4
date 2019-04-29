@@ -7,7 +7,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 class Emote : StandardCommand() {
     override val commandName = "e"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val emoji = event.message.customEmojis[0]
         event.channel.sendMessage(emoji.image.url.toString())
     }

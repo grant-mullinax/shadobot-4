@@ -9,10 +9,10 @@ import java.io.File
 import javax.imageio.ImageIO
 
 
-class AddDoge : StandardCommand() {
+class AddDoge(private val api: DiscordApi) : StandardCommand() {
     override val commandName = "adddoge"
 
-    override fun action(event: MessageCreateEvent, api: DiscordApi) {
+    override fun action(event: MessageCreateEvent) {
         val dogeFolder = File("doge")
 
         val parser = MessageParameterParser(event.message)
