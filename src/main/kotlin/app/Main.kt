@@ -10,6 +10,7 @@ import app.commands.trash.Whenisay
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
 import org.javacord.api.DiscordApiBuilder
+import java.io.File
 
 fun main() {
     val api = DiscordApiBuilder().setToken(Keys.discord).login().join()
@@ -71,4 +72,11 @@ fun main() {
     println("---------- BOT ONLINE ----------")
 
     cBot.gatherRoles()
+
+    /*var file = File("path.txt")
+    file.createNewFile()
+    api.getChannelById(547303725706903552).get().asTextChannel().get().getMessages(999999999).join().forEach { s ->
+        if (!s.content.isBlank())
+            file.appendText("${s.author.name} :: ${s.content} \n")
+    }*/
 }
