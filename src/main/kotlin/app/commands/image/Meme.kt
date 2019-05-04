@@ -6,6 +6,7 @@ import app.parsing.ParserFailureException
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
+import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Font
 import java.awt.geom.AffineTransform
@@ -21,49 +22,38 @@ class Meme : StandardCommand() {
         val parser = MessageParameterParser(event.message)
         val memeText = parser.extractMultiSpaceString("meme text").split("|")
         val topText = memeText[0]
-        val bottomText = if (memeText.size == 2) memeText[1] else throw ParserFailureException(
-            "failed to separate top and bottom text"
-        )
-        val size = parser.extractInt("text size", 70)
+        val bottomText = if (memeText.size == 2) memeText[1] else ""
+
+        //val size = parser.extractInt("text size", 70)
 
         val image = parser.extractImageAndLookUpward()
 
+        val size = image.width/10
+
         val graphics = image.createGraphics()
         graphics.color = Color.black
-        graphics.font = Font("Impact", Font.BOLD, size)
+        graphics.font = Font("Impact", Font.PLAIN, size)
+        graphics.stroke = BasicStroke(size/10f)
 
         val topBOffset = graphics.fontMetrics.stringWidth(topText)
-        graphics.drawString(
-            topText,
-            image.width/2 - topBOffset/2,
-            20 + size
-        )
+        val topTextGV = graphics.font.createGlyphVector(graphics.fontRenderContext, topText)
+        val topTextOutline = topTextGV.outline
 
-        val bottomBOffset = graphics.fontMetrics.stringWidth(bottomText)
-        graphics.drawString(
-            bottomText,
-            image.width/2 - bottomBOffset/2,
-            image.height - 20
-        )
-
-
-        val bigSize = (size * 1.1).toInt()
+        graphics.translate(image.width/2 - topBOffset/2, ((4.0/3.0) * size).toInt())
+        graphics.draw(topTextOutline)
         graphics.color = Color.white
-        graphics.font = Font("Impact", Font.PLAIN, bigSize)
+        graphics.fill(topTextOutline)
 
-        val topOffset = graphics.fontMetrics.stringWidth(topText)
-        graphics.drawString(
-            topText,
-            image.width/2 - topOffset/2,
-            20 + bigSize
-        )
-
-        val bottomOffset = graphics.fontMetrics.stringWidth(bottomText)
-        graphics.drawString(
-            bottomText,
-            image.width/2 - bottomOffset/2,
-            image.height - 20
-        )
+        if (bottomText != "") {
+            val bottomBOffset = graphics.fontMetrics.stringWidth(bottomText)
+            val bottomTextGV = graphics.font.createGlyphVector(graphics.fontRenderContext, bottomText)
+            val bottomTextOutline = bottomTextGV.outline
+            graphics.color = Color.black
+            graphics.translate((image.width/2 - bottomBOffset/2) - (image.width/2 - topBOffset/2), image.height - ((5.0/3.0) * size).toInt())
+            graphics.draw(bottomTextOutline)
+            graphics.color = Color.white
+            graphics.fill(bottomTextOutline)
+        }
 
         graphics.dispose()
 
