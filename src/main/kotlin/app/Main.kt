@@ -10,7 +10,6 @@ import app.commands.trash.Whenisay
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
 import org.javacord.api.DiscordApiBuilder
-import java.io.File
 
 fun main() {
     val api = DiscordApiBuilder().setToken(Keys.discord).login().join()
@@ -33,7 +32,7 @@ fun main() {
             Whenisay(cBot),
             RoleInfo(),
             RandomDoge(),
-            Speak(),
+            MetaParserTestCommand(),
             Devil(),
             Angel(),
             Alignment(),

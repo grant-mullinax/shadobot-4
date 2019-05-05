@@ -64,7 +64,6 @@ class AniDrip : StandardCommand() {
             }
         }
 
-        val outputFile = File("out.gif")
         val output = FileImageOutputStream(File("out.gif"))
         val writer = GifSequenceWriter(output, image.type, 1, true)
 
