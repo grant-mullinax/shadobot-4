@@ -23,15 +23,15 @@ fun main() {
 
     val pinged = listOf("no thanks", "blocked", "im busy", "shhhh im playin pokemon", "no thank you im busy",
         "please do not bother me", "im bzy", "sorry cant talk", "srry cant type nty", "no", "please dont ping me ok?")
-    val legends = setOf("Arceus", "Articuno", "Azelf", "Celebi", "Cobalion", "Cosmoem", "Cosmog", "Cresselia",
-    "Darkrai", "Deoxys", "Dialga", "Diancie", "Entei", "Genesect", "Giratina", "Groudon",
-    "Heatran", "Ho-Oh", "Hoopa", "Jirachi", "Keldeo", "Kyogre", "Kyurem", "Landorus",
-    "Latias", "Latios", "Lugia", "Lunala", "Magearna", "Manaphy", "Marshadow", "Meloetta",
-    "Mesprit", "Mew", "Mewtwo", "Moltres", "Necrozma", "Palkia", "Phione", "Raikou",
-    "Rayquaza", "Regice", "Regigigas", "Regirock", "Registeel", "Reshiram", "Shaymin", "Silvally",
-    "Solgaleo", "Suicune", "Tapu Bulu", "Tapu Fini", "Tapu Koko", "Tapu Lele", "Terrakion", "Thundurus",
-    "Tornadus", "Type: Null", "Uxie", "Victini", "Virizion", "Volcanion", "Xerneas", "Yveltal",
-    "Zapdos", "Zekrom", "Zeraora", "Zygarde", "Detective Pikachu")
+    val legends = setOf("arceus", "articuno", "azelf", "celebi", "cobalion", "cosmoem", "cosmog", "cresselia",
+        "darkrai", "deoxys", "dialga", "diancie", "entei", "genesect", "giratina", "groudon",
+        "heatran", "ho-oh", "hoopa", "jirachi", "keldeo", "kyogre", "kyurem", "landorus",
+        "latias", "latios", "lugia", "lunala", "magearna", "manaphy", "marshadow", "meloetta",
+        "mesprit", "mew", "mewtwo", "moltres", "necrozma", "palkia", "phione", "raikou",
+        "rayquaza", "regice", "regigigas", "regirock", "registeel", "reshiram", "shaymin", "silvally",
+        "solgaleo", "suicune", "tapu bulu", "tapu fini", "tapu koko", "tapu lele", "terrakion", "thundurus",
+        "tornadus", "type: null", "uxie", "victini", "virizion", "volcanion", "xerneas", "yveltal",
+        "zapdos", "zekrom", "zeraora", "zygarde", "detective pikachu")
 
     println("selfbot ready")
     val rand = java.util.Random()
@@ -106,7 +106,7 @@ fun main() {
 
         val pokemon = pokemonMap[hash] ?: return@addMessageCreateListener
 
-        if (legends.contains(pokemon)) {
+        if (legends.contains(pokemon.toLowerCase())) {
             GlobalScope.launch {
                 lock = true
                 delay((rand.nextGaussian()*25+555).toLong())
