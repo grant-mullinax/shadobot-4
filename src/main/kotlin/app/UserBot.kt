@@ -31,7 +31,7 @@ fun main() {
     "Rayquaza", "Regice", "Regigigas", "Regirock", "Registeel", "Reshiram", "Shaymin", "Silvally",
     "Solgaleo", "Suicune", "Tapu Bulu", "Tapu Fini", "Tapu Koko", "Tapu Lele", "Terrakion", "Thundurus",
     "Tornadus", "Type: Null", "Uxie", "Victini", "Virizion", "Volcanion", "Xerneas", "Yveltal",
-    "Zapdos", "Zekrom", "Zeraora", "Zygarde")
+    "Zapdos", "Zekrom", "Zeraora", "Zygarde", "Detective Pikachu")
 
     println("selfbot ready")
     val rand = java.util.Random()
@@ -124,7 +124,8 @@ fun main() {
 
             val typing = event.channel.typeContinuously()
             GlobalScope.launch {
-                val delay = ((rand.nextGaussian() * 510) + 3503).toLong()
+                delay((rand.nextGaussian()*25+255).toLong())
+                val delay = ((rand.nextGaussian() * 210) + 3703).toLong() + if ((1..3).random() == 1) 2000L else 0
                 print("in https://discordapp.com/channels/${event.server.get().id}/${event.channel.id} caught $pokemon with delay $delay ")
                 delay(delay)
                 event.channel.sendMessage("${prefix.value}catch ${pokemon.toLowerCase()}")

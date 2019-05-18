@@ -2,7 +2,6 @@ package app
 
 import app.commands.abstract.MessageProcess
 import app.parsing.ParserFailureException
-import javafx.application.Application.launch
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.server.Server
 import org.javacord.api.entity.user.User
