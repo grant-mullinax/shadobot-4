@@ -63,8 +63,8 @@ fun main() {
             Rotate(),
             Edges(),
             Emote(),
-            Fry(),
-            PokecordCheater()
+            Fry()
+            // PokecordCheater()
             // PokeScraper()
     ).forEach(cBot::addProccess)
 
