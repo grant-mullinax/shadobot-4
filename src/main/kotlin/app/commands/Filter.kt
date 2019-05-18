@@ -13,7 +13,7 @@ class Filter : MessageProcess {
 
     override fun action(event: MessageCreateEvent) {
         event.message.delete()
-        val role = event.server.get().roles.find { r -> r.name == "n-word sayer" }
-        event.messageAuthor.asUser().get().addRole(role)
+        val role = event.server.get().roles.find { r -> r.name == "n-word sayer" } ?: return
+        event.messageAuthor.asUser().ifPresent { user -> user.addRole(role) }
     }
 }

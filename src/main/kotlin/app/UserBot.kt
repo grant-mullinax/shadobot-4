@@ -18,7 +18,7 @@ import java.security.MessageDigest
 fun main() {
     val api = DiscordApiBuilder().setToken(Keys.userBot).setAccountType(AccountType.CLIENT).login().join()
     val prefixRegex = Regex("(?<=Guess the pokémon and type )(.*)(?=catch <pokémon> to catch it!)")
-    val happy = listOf("yeah", "heck yeah", ":))", "woooooo", "pokemonnnn", "yaya", "yay", "hooray", ":)", "awesome", "love this guy", "!!!!", "YOINK")
+    val happy = listOf("yeah", "heck yeah", ":))", "woooooo", "yaya", "yay", "hooray", ":)", "awesome", "love this guy", "!!!!", "YOINK")
     val sad = listOf("DANGIT", "dang", "damn", "NOOOOOOOO", ":(((", ":(", "heck", "too slow :(", "grrr", "nice", "nice catch", "wow cool", "rip", "ripp")
 
     val pinged = listOf("no thanks", "blocked", "im busy", "shhhh im playin pokemon", "no thank you im busy",
@@ -108,13 +108,15 @@ fun main() {
 
         if (legends.contains(pokemon)) {
             GlobalScope.launch {
-                delay((rand.nextGaussian()*155+755).toLong())
+                lock = true
+                delay((rand.nextGaussian()*25+555).toLong())
                 event.channel.sendMessage("${prefix.value}catch ${pokemon.toLowerCase()}")
                 print("in https://discordapp.com/channels/${event.server.get().id}/${event.channel.id} caught LEGENDARY $pokemon")
                 delay((rand.nextGaussian()*203+4065).toLong())
                 event.channel.sendMessage(happy.random())
                 delay((rand.nextGaussian()*203+3065).toLong())
                 event.channel.sendMessage("${prefix.value}info latest")
+                lock = false
             }
         } else {
             if ((1..7).random() <= 2)
