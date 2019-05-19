@@ -32,6 +32,7 @@ fun main() {
         "solgaleo", "suicune", "tapu bulu", "tapu fini", "tapu koko", "tapu lele", "terrakion", "thundurus",
         "tornadus", "type: null", "uxie", "victini", "virizion", "volcanion", "xerneas", "yveltal",
         "zapdos", "zekrom", "zeraora", "zygarde", "detective pikachu")
+    val mainUser = api.getUserById(216667085403717632) // currently just me, add some config file eventually
 
     println("selfbot ready")
     val rand = java.util.Random()
@@ -115,6 +116,7 @@ fun main() {
                 delay((rand.nextGaussian()*203+4065).toLong())
                 event.channel.sendMessage(happy.random())
                 delay((rand.nextGaussian()*203+3065).toLong())
+                mainUser.get().sendMessage("Caught LEGENDARY $pokemon")
                 event.channel.sendMessage("${prefix.value}info latest")
                 lock = false
             }
