@@ -1,6 +1,4 @@
-package app
-
-import app.commands.Pokemon.PokeScraper
+import app.Keys
 import com.beust.klaxon.Converter
 import com.beust.klaxon.JsonValue
 import com.beust.klaxon.Klaxon
@@ -45,7 +43,6 @@ fun main() {
             return ""
         }
     }
-    val pokeScraper = PokeScraper()
 
     val pokemonMap: HashMap<String, String> = Klaxon()
         .converter(mapConverter)
@@ -61,8 +58,8 @@ fun main() {
         if (event.messageAuthor.id != 365975655608745985 || lock)
             return@addMessageCreateListener
 
-        if (pokeScraper.qualifier(event))
-            pokeScraper.action(event)
+        // if (pokeScraper.qualifier(event))
+        //     pokeScraper.action(event)
 
         if (event.messageContent.contains("You caught a level")) {
             val isSelf = event.message.mentionedUsers.first().id == 524347945282437161
@@ -119,7 +116,7 @@ fun main() {
                 lock = false
             }
         } else {
-            if ((1..7).random() <= 2)
+            if ((1..7).random() <= 3)
                 return@addMessageCreateListener
 
             val typing = event.channel.typeContinuously()
