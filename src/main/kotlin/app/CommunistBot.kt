@@ -62,10 +62,10 @@ class CommunistBot(private val api: DiscordApi) {
     }
 
     fun gatherRoles() {
-        val server = api.getServerById(544737205315305481).get()
+        /*val server = api.getServerById(544737205315305481).get()
         server.members.forEach { m: User ->
             gatherRolesForUser(m, server)
-        }
+        }*/
     }
 
     private fun gatherRolesForUser(user: User, server: Server) {

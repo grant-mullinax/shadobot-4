@@ -118,7 +118,7 @@ class Vote(private val api: DiscordApi) : StandardCommand() {
                 val idString = parser.extractString("message id")
                 val message = api.getMessageById(idString, event.channel).get()
                 poll = Poll(votesRequired = 3,
-                        englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/$idString",
+                        englishAction = "pin message https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}https://discordapp.com/channels/${event.server.get().id}/${event.channel.id}/$idString",
                         action = {
                             message.pin()
                         })

@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 
 class Broadcast : StandardCommand {
     override val commandName = "broadcast"
-    private val broadcastChannelIds = listOf(548312509355130883, 366665395395887126, 567083500570673167)
+    private val broadcastChannelIds = listOf(567083500570673167)
     private val broadcastChannels: List<ServerTextChannel>
 
     constructor(api: DiscordApi) {

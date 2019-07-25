@@ -7,10 +7,12 @@ import app.commands.doge.AddDoge
 import app.commands.doge.ListDoge
 import app.commands.doge.RandomDoge
 import app.commands.image.*
+import app.commands.trash.TrollProp
 import app.commands.trash.Wapoosh2
 import app.commands.trash.Whenisay
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
+import app.parsing.ParserFailureException
 import com.beust.klaxon.Converter
 import com.beust.klaxon.JsonValue
 import com.beust.klaxon.Klaxon
@@ -30,6 +32,7 @@ fun main() {
     cBot.addProccess(Dad())
 
     listOf(
+            // TrollProp(),
             Ugly(),
             BiggestLove(),
             Broadcast(api),
@@ -64,7 +67,8 @@ fun main() {
             Edges(),
             Emote(),
             Fry(),
-            PokecordCheater()
+            PokecordCheater(),
+            Friends()
             // PokeScraper()
     ).forEach(cBot::addProccess)
 
@@ -85,6 +89,15 @@ fun main() {
     println("---------- BOT ONLINE ----------")
 
     cBot.gatherRoles()
+
+    /*
+    val server = api.getServerById(544737205315305481).get()
+    val role = server.roles.find { r -> r.name == "alpha" }!!
+    server.getMemberById(249965755502690315).get().removeRole(role)
+    server.getMemberById(151161709447479296).get().removeRole(role)
+    server.unbanUser(155061315977740288)
+    */
+
 /*
     val msg = api.getMessageById(
         578041747221905419,

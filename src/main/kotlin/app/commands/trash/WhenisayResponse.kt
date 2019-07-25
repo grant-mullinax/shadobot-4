@@ -7,7 +7,9 @@ import org.javacord.api.event.message.MessageCreateEvent
 class WhenisayResponse(private val trigger: String, private val reply: String) : MessageProcess {
 
     override fun qualifier(event: MessageCreateEvent): Boolean {
-        return event.messageContent.startsWith(trigger, ignoreCase = true)
+        return event.messageAuthor.isUser &&
+                !event.messageAuthor.isYourself &&
+                event.messageContent.toLowerCase() == trigger.toLowerCase()
     }
 
     override fun action(event: MessageCreateEvent) {
