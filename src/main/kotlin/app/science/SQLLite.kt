@@ -30,7 +30,7 @@ fun main(args: Array<String>) {
         try {
             connection?.close()
         } catch (e: SQLException) {
-            // connection close failed.
+             // connection close failed.
             System.err.println(e.message)
         }
 

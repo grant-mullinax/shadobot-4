@@ -3,7 +3,7 @@ package app.commands.abstract
 import org.javacord.api.event.message.MessageCreateEvent
 
 abstract class StandardCommand : MessageProcess {
-    private val prefix = "!"
+    protected val prefix = "!"
     abstract val commandName: String
 
     override fun qualifier(event: MessageCreateEvent): Boolean {

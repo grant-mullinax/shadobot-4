@@ -10,7 +10,7 @@ import org.javacord.api.event.server.member.ServerMemberJoinEvent
 import org.javacord.api.event.server.role.UserRoleAddEvent
 
 class CommunistBot(private val api: DiscordApi) {
-    private val processes = mutableListOf<MessageProcess>()
+    val processes = mutableListOf<MessageProcess>()
 
     private val roles = mutableMapOf<Long, MutableList<Long>>()
 
