@@ -29,7 +29,7 @@ class AddDoge(private val api: DiscordApi) : StandardCommand() {
     }
 
     fun receiveVoteReaction(event: ReactionAddEvent) {
-        if (!event.reaction.get().emoji.equalsEmoji("\uD83D\uDC15")) {
+        if (!event.reaction.isPresent || !event.reaction.get().emoji.equalsEmoji("\uD83D\uDC15")) {
             return
         }
 

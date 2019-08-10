@@ -28,6 +28,6 @@ class Dad : MessageProcess {
             )
 
             event.message.addReaction("\uD83D\uDC68")
-        } catch (ex: ParserFailureException) {}
+        } catch (ex: Exception) {}
     }
 }

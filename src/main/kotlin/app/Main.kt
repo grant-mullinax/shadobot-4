@@ -1,8 +1,8 @@
 package app
 
 import app.commands.*
+import app.commands.trash.Avalon
 import app.commands.Pokemon.PokecordCheater
-import app.commands.abstract.MessageProcess
 import app.commands.doge.AddDoge
 import app.commands.doge.ListDoge
 import app.commands.doge.RandomDoge
@@ -56,7 +56,8 @@ fun main() {
         Emote(),
         Fry(),
         PokecordCheater(),
-        Friends()
+        Friends(),
+        Avalon()
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge(api)
