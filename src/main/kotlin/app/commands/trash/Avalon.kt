@@ -32,11 +32,13 @@ class Avalon : MessageProcess {
             players.add(Pair(event.privateChannel.get(), role))
 
             if (players.size == playerCount) {
+                players.forEach { it.first.sendMessage("Everyone has submitted their role!") }
+
                 val badGuys = players.filter { it.second == "badguy" || it.second == "morgana" }.shuffled()
                 val stringOfBadGuys = "the bad guys are:\n" + badGuys.map { it.first.recipient.name }.reduce { a, b -> "$a\n$b" }
                 badGuys.forEach {
-                        it.first.sendMessage(stringOfBadGuys
-                    )
+                        it.first.sendMessage(stringOfBadGuys + "hitler is " + players.filter { it.second == "hitler" }
+                        )
                 }
                 players.filter { it.second == "merlin" }.forEach { it.first.sendMessage(stringOfBadGuys) }
 

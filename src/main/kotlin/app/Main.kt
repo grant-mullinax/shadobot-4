@@ -7,6 +7,7 @@ import app.commands.doge.AddDoge
 import app.commands.doge.ListDoge
 import app.commands.doge.RandomDoge
 import app.commands.image.*
+import app.commands.trash.Avalon2
 import app.commands.trash.Wapoosh2
 import app.commands.trash.Whenisay
 import app.commands.vote.Vote
@@ -57,7 +58,7 @@ fun main() {
         Fry(),
         PokecordCheater(),
         Friends(),
-        Avalon()
+        Avalon2()
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge(api)
