@@ -98,7 +98,7 @@ class Avalon2 : MessageProcess {
                     )
                 }
             } else {
-                event.channel.sendMessage("thanks !!!! waiting on ${playerCount - playersInGame} players")
+                event.channel.sendMessage("thanks !!!! waiting on ${playerCount - playersInGame - 1} players")
             }
         }
     }

@@ -42,6 +42,6 @@ class PokecordCheater : MessageProcess {
         val data = FileContainer(event.message.embeds.first().image.get().url).asByteArray(event.api).join()
         val md = MessageDigest.getInstance("MD5")
         val hash = BigInteger(1, md.digest(data)).toString(16).padStart(32, '0')
-        event.channel.sendMessage("<@&578091224792170506> a ${pokemonMap[hash]} appeared")
+        event.channel.sendMessage("a ${pokemonMap[hash]} appeared")
     }
 }
