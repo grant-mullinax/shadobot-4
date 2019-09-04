@@ -18,7 +18,7 @@ class StatusReport : StandardCommand() {
         val busyCount = usersWithRole.count { it.status == UserStatus.IDLE }
 
         event.channel.sendMessage("${role.name} users are:\n" +
-                "$onlineCount/${usersWithRole.size} online/do not disturb\n" +
+                "$onlineCount/${usersWithRole.size} online or do not disturb\n" +
                 "$busyCount/${usersWithRole.size} idle"
         )
     }

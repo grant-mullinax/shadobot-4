@@ -19,7 +19,7 @@ fun main() {
 
     val cBot = CommunistBot(api)
     cBot.processes.add(Filter())
-    cBot.processes.add(Dad())
+    // cBot.processes.add(Dad())
 
     listOf(
         Ugly(),
