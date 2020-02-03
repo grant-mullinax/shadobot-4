@@ -4,50 +4,45 @@ import app.Keys
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
 import app.parsing.ParserFailureException
-import com.microsoft.azure.cognitiveservices.search.imagesearch.BingImageSearchManager
-import com.microsoft.azure.cognitiveservices.search.imagesearch.BingImages.BingImagesSearchDefinitionStages.WithExecute
-import com.microsoft.azure.cognitiveservices.search.imagesearch.models.SafeSearch
+import com.beust.klaxon.json
+import kotlinx.coroutines.Job
 import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.image.BufferedImage
+import java.net.HttpURLConnection
 import java.net.URL
+import java.net.URLEncoder
 import javax.imageio.IIOException
 import javax.imageio.ImageIO
 
 
 class Img : StandardCommand() {
-    private val client = BingImageSearchManager.authenticate(Keys.bingImages)
     override val commandName = "img"
 
     override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
-        val search = parser.extractMultiSpaceString("search")
-        val query = client.bingImages().search()
-                .withQuery(search)
-                .withMarket("en-us")
-                .withSafeSearch(if (event.channel.asServerTextChannel().get().isNsfw) SafeSearch.OFF else SafeSearch.MODERATE)
-                .withCount(1)
-        val image = searchWithRetry(query, 0) ?: throw ParserFailureException("query failed for some reason")
+        val query = parser.extractMultiSpaceString("query")
 
-        val message = MessageBuilder()
-        message.addAttachment(image, "result.png")
+        val url = URL("https://www.googleapis.com/customsearch/v1" +
+                "?q=" + URLEncoder.encode(query, "UTF-8") +
+                "&num=3" +
+                "&start=1" +
+                "&imgSize=medium" +
+                "&filetype=jpg" +
+                "&searchType=image" +
+                "&key=" + Keys.googleImages +
+                "&cx=002530997264605549526:retczad1ovw")
 
-        message.send(event.channel)
-    }
+        with(url.openConnection() as HttpURLConnection) {
+            requestMethod = "GET"
 
-    private fun searchWithRetry(query: WithExecute, retry: Long): BufferedImage? {
-        if (retry > 2)
-            return null
-        val imageResults = query.execute()
+            val jsonString = inputStream.bufferedReader().use {
+                it.lines().reduce { a, b -> a + "\n" + b }
+            }
+            val url = jsonString.toString().substringAfter("link\": \"").substringBefore("\"")
+            event.channel.sendMessage(url)
 
-        val firstResult = imageResults.value().first()
-        val urlText = firstResult.contentUrl()
-        val url = URL(urlText)
-        return try {
-            ImageIO.read(url)
-        } catch (ex: IIOException) {
-            searchWithRetry(query.withOffset(retry + 1), retry + 1)
         }
     }
 }

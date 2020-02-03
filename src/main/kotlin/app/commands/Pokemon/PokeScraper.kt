@@ -5,7 +5,6 @@ import app.commands.abstract.MessageProcess
 import com.beust.klaxon.Converter
 import com.beust.klaxon.JsonValue
 import com.beust.klaxon.Klaxon
-import com.microsoft.azure.cognitiveservices.search.imagesearch.BingImageSearchManager
 import kotlinx.coroutines.channels.consumesAll
 import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.core.util.FileContainer

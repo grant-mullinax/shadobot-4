@@ -26,7 +26,6 @@ dependencies {
     implementation 'com.beust:klaxon:5.0.1'
     implementation 'org.javacord:javacord:3.0.3'
     implementation "org.xerial:sqlite-jdbc:3.27.2.1"
-    implementation "com.microsoft.azure.cognitiveservices:azure-cognitiveservices-imagesearch:1.0.2"
     implementation "org.slf4j:slf4j-simple:1.7.26"
 }
 
