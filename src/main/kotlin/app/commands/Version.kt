@@ -8,6 +8,6 @@ class Version : StandardCommand() {
     override val commandName = "version"
 
     override fun action(event: MessageCreateEvent) {
-        event.channel.sendMessage("Built on: 02/03 18:51:01")
+        event.channel.sendMessage("Built on: 02/12 00:56:12")
     }
 }

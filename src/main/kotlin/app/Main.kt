@@ -59,7 +59,10 @@ fun main() {
         PokecordCheater(),
         Friends(),
         Avalon2(),
-        StatusReport()
+        StatusReport(),
+        Retro(),
+        Grey(),
+        Outline()
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge(api)

@@ -17,7 +17,7 @@ class Edges : StandardCommand() {
         GlobalScope.launch {
             val parser = MessageParameterParser(event.message)
             val resolution = parser.extractInt("edge resolution", 1)
-            val brighten = parser.extractInt("brighten scale", 10)
+            val brighten = parser.extractInt("brighten scale", 1)
 
             val image = parser.extractImageAndLookUpward()
 
@@ -42,7 +42,7 @@ class Edges : StandardCommand() {
                         ) / (directions.size - 1)
                     }
 
-                    outputImage.setRGB(x, y, (outputColor * brighten).abs().darknessToAlpha().toInt())
+                    outputImage.setRGB(x, y, (outputColor * brighten).abs().toInt())
                 }
             }
 

@@ -71,4 +71,8 @@ class SimpleColor {
     operator fun div(other: Int): SimpleColor {
         return SimpleColor(red / other, green / other, blue / other)
     }
+
+    fun applyToEach(fn: (Int) -> (Int)): SimpleColor {
+        return SimpleColor(fn(red), fn(green), fn(blue))
+    }
 }

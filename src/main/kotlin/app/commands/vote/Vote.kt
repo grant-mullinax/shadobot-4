@@ -214,7 +214,7 @@ class Vote(private val api: DiscordApi) : StandardCommand() {
         val poll = voteMessages[message]
         if (poll != null) {
             // first is mikey 2nd alan
-            val cheater = (event.user.id == 155061315977740288) && event.emoji.equalsEmoji("\uD83C\uDF0B")
+            val cheater = ((event.user.id == 155061315977740288) || (event.user.id == 155061315977740288)) && event.emoji.equalsEmoji("\uD83C\uDF0B")
 
             val yeses = message.reactions.find { r -> r.emoji.equalsEmoji("✅") }!!
             if (yeses.count >= poll.votesRequired || cheater) {

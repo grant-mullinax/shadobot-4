@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 
 class TrollProp : MessageProcess {
     override fun qualifier(event: MessageCreateEvent): Boolean {
-        return event.messageAuthor.id == 159489412550492161;
+        return event.messageAuthor.id == 159489412550492161
     }
 
     override fun action(event: MessageCreateEvent) {

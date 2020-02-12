@@ -21,6 +21,7 @@ class BiggestLove : StandardCommand() {
                 lines = 0
             }
         }
+
         event.channel.sendMessage(str)
     }
 }
