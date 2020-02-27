@@ -62,6 +62,7 @@ fun main() {
         StatusReport(),
         Retro(),
         Grey(),
+        Deadname(),
         Outline()
     ).forEach(cBot::addProccess)
 
