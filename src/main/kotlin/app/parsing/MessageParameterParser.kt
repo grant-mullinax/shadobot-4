@@ -85,6 +85,10 @@ class MessageParameterParser {
         return extractGeneric(String::toInt, default, description, "integer")
     }
 
+    fun extractLong(description: String, default: Long? = null): Long {
+        return extractGeneric(String::toLong, default, description, "long")
+    }
+
     fun extractFloat(description: String, default: Float? = null): Float {
         return extractGeneric(String::toFloat, default, description, "decimal")
     }

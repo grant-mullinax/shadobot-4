@@ -2,7 +2,33 @@ package app.commands.image
 
 import kotlin.math.abs
 
+
 class SimpleColor {
+    companion object {
+        fun fromHsv(hue: Float, saturation: Float, value: Float) : SimpleColor{
+            val h = (hue * 6).toInt()
+            val f = hue * 6 - h
+            val p = value * (1 - saturation)
+            val q = value * (1 - f * saturation)
+            val t = value * (1 - (1 - f) * saturation)
+
+            val intVal = (value * 255).toInt()
+            val intT = (t * 255).toInt()
+            val intP = (p * 255).toInt()
+            val intQ = (q * 255).toInt()
+
+            return when (h) {
+                0 -> SimpleColor(intVal, intT, intP)
+                1 -> SimpleColor(intQ, intVal, intP)
+                2 -> SimpleColor(intQ, intVal, intT)
+                3 -> SimpleColor(intP, intQ, intVal)
+                4 -> SimpleColor(intT, intP, intVal)
+                5 -> SimpleColor(intVal, intP, intQ)
+                else -> throw RuntimeException("Something went wrong when converting from HSV to RGB. Input was $hue, $saturation, $value");
+            }
+        }
+    }
+
     var alpha: Int
     var red: Int
     var green: Int
@@ -74,5 +100,9 @@ class SimpleColor {
 
     fun applyToEach(fn: (Int) -> (Int)): SimpleColor {
         return SimpleColor(fn(red), fn(green), fn(blue))
+    }
+
+    operator fun times(other: Float): SimpleColor {
+        return SimpleColor((red * other).toInt(), (green * other).toInt(), (blue * other).toInt())
     }
 }

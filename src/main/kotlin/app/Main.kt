@@ -1,15 +1,12 @@
 package app
 
 import app.commands.*
-import app.commands.trash.Avalon
 import app.commands.Pokemon.PokecordCheater
 import app.commands.doge.AddDoge
 import app.commands.doge.ListDoge
 import app.commands.doge.RandomDoge
 import app.commands.image.*
-import app.commands.trash.Avalon2
-import app.commands.trash.Wapoosh2
-import app.commands.trash.Whenisay
+import app.commands.trash.*
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
 import org.javacord.api.DiscordApiBuilder
@@ -61,9 +58,15 @@ fun main() {
         Avalon2(),
         StatusReport(),
         Retro(),
+        Destroy(), //warning lol
         Grey(),
         Deadname(),
-        Outline()
+        Mirror(),
+        Dream(),
+        MegaDream(),
+        Roll(),
+        Outline(),
+        ColorMe()
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge(api)
