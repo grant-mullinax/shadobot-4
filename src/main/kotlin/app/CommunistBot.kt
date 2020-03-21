@@ -8,8 +8,10 @@ import org.javacord.api.entity.user.User
 import org.javacord.api.event.message.MessageCreateEvent
 import org.javacord.api.event.server.member.ServerMemberJoinEvent
 import org.javacord.api.event.server.role.UserRoleAddEvent
+import org.javacord.api.exception.MissingPermissionsException
 
 class CommunistBot(private val api: DiscordApi) {
+    val owner = api.getUserById(155061315977740288).get()
     val processes = mutableListOf<MessageProcess>()
 
     private val roles = mutableMapOf<Long, MutableList<Long>>()
@@ -24,13 +26,14 @@ class CommunistBot(private val api: DiscordApi) {
                     process.action(event)
                 } catch (ex: ParserFailureException) {
                     event.channel.sendMessage(ex.message)
+                } catch (ex: MissingPermissionsException) {
+                    event.channel.sendMessage("I don't got the permissions to do that yo")
                 } catch (ex: Exception) {
-                    val stackTrace =
-                        ex.stackTrace.map { e -> "in ${e.className}/${e.methodName} at line ${e.lineNumber}" }
+                    val stackTrace = ex.stackTrace.map { e -> "in ${e.className}/${e.methodName} at line ${e.lineNumber}" }
                             .reduce { a, b -> "$a\n$b" }
-                    event.channel.sendMessage("unusual error\n${ex.message}\n$stackTrace")
+                    owner.sendMessage("error\n${ex.message}\n$stackTrace")
+                    event.channel.sendMessage("i broke!")
                 }
-                return
             }
         }
     }

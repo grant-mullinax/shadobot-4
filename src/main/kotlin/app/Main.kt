@@ -58,7 +58,7 @@ fun main() {
         Avalon2(),
         StatusReport(),
         Retro(),
-        Destroy(), //warning lol
+        Clone(api),
         Grey(),
         Deadname(),
         Mirror(),
