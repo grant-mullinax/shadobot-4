@@ -58,7 +58,7 @@ fun main() {
         Avalon2(),
         StatusReport(),
         Retro(),
-        Clone(api),
+        // Clone(api),
         Grey(),
         Deadname(),
         Mirror(),
@@ -66,7 +66,10 @@ fun main() {
         MegaDream(),
         Roll(),
         Outline(),
-        ColorMe()
+        // WaifuTroll(api),
+        Distribute(),
+        ColorMe(),
+        ListCommands(cBot)
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge(api)

@@ -22,13 +22,14 @@ class Meme : StandardCommand() {
         val parser = MessageParameterParser(event.message)
         val memeText = parser.extractMultiSpaceString("meme text").split("|")
         val topText = memeText[0]
-        val bottomText = if (memeText.size == 2) memeText[1] else ""
+        val bottomText = if (memeText.size > 1) memeText[1] else ""
 
         //val size = parser.extractInt("text size", 70)
 
         val image = parser.extractImageAndLookUpward()
 
-        val size = image.width/10
+        val scale = if (memeText.size == 3) memeText[2].toInt() else 10
+        val size = image.width/scale
 
         val graphics = image.createGraphics()
         graphics.color = Color.black

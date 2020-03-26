@@ -24,9 +24,6 @@ class Clone(val api: DiscordApi) : StandardCommand() {
 
         val dupe = api.getServerById(id).get()
 
-        dupe.roles.forEach { it.delete() }
-        dupe.channels.forEach { it.delete() }
-
         dupe.updateIcon(event.server.get().icon.get().url)
         dupe.updateName(event.server.get().name)
 

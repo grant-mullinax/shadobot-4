@@ -64,7 +64,6 @@ class AniDrip : StandardCommand() {
             }
         }
 
-        val outputFile = File("out.gif")
         val output = FileImageOutputStream(File("out.gif"))
         val writer = GifSequenceWriter(output, image.type, 1, true)
 
@@ -86,5 +85,10 @@ class AniDrip : StandardCommand() {
 
         writer.close()
         output.close()
+
+        val process = Runtime.getRuntime().exec("curl -F'out.gif' http://0x0.st")
+        process.inputStream.reader(Charsets.UTF_8).use {
+            event.channel.sendMessage(it.readText())
+        }
     }
 }

@@ -66,7 +66,7 @@ class MessageParameterParser {
                 return default ?: throw ParserFailureException("Failed to supply $description")
             }
             return f(text)
-        } catch (ex: NumberFormatException) {
+        } catch (ex: Exception) {
             throw ParserFailureException("Failed to parse $typeName $description from $text")
         }
     }

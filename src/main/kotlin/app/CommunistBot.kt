@@ -11,7 +11,7 @@ import org.javacord.api.event.server.role.UserRoleAddEvent
 import org.javacord.api.exception.MissingPermissionsException
 
 class CommunistBot(private val api: DiscordApi) {
-    val owner = api.getUserById(155061315977740288).get()
+    private val owner: User = api.getUserById(155061315977740288).get()
     val processes = mutableListOf<MessageProcess>()
 
     private val roles = mutableMapOf<Long, MutableList<Long>>()

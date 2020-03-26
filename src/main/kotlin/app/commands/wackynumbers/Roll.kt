@@ -8,7 +8,7 @@ import org.javacord.api.event.message.MessageCreateEvent
 import kotlin.random.Random
 
 class Roll : StandardCommand() {
-    override val commandName = "Roll"
+    override val commandName = "roll"
 
     override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
