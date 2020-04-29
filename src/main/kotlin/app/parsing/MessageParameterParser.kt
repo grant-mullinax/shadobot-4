@@ -33,7 +33,7 @@ class MessageParameterParser {
         mentionedUsers = LinkedList(message.mentionedUsers)
     }
 
-    private fun extractNullableString(): String? {
+    fun extractNullableString(): String? {
         if (parameterText == "")
             return null
 
@@ -52,10 +52,31 @@ class MessageParameterParser {
     }
 
     fun extractMultiSpaceString(description: String, default: String? = null): String {
-        if (parameterText == "") default ?: throw ParserFailureException("$description not supplied")
-        val parameter = parameterText
-        parameterText = ""
-        return parameter
+        if (parameterText == "") return default ?: throw ParserFailureException("$description not supplied")
+        return if (parameterText.startsWith('"')) {
+            val quoteRegex = "([\"'])(?:(?=(\\\\?))\\2.)*?\\1".toRegex()
+            val parameterResult = quoteRegex.find(parameterText) ?: throw ParserFailureException("close quote on multi space string not supplied")
+            val parameter = parameterResult.value.substring(1, parameterResult.value.length -1)
+
+            parameterText = if (parameterResult.value.length == parameterText.length) {
+                ""
+            } else {
+                parameterText.substring(parameterResult.value.length + 1, parameterText.length)
+            }
+
+            parameter
+        } else {
+            if (!parameterText.contains('|')) {
+                val parameter = parameterText
+                parameterText = ""
+                parameter
+            } else {
+                val splitParameter = parameterText.split('|', limit = 2)
+                val parameter = splitParameter[0]
+                parameterText = splitParameter[1]
+                parameter
+            }
+        }
     }
 
     private fun <T : Any> extractGeneric(f: (String) -> T, default: T?, description: String, typeName: String): T {
@@ -120,7 +141,7 @@ class MessageParameterParser {
 
     fun extractImageAndLookUpward(): BufferedImage {
         // todo could be probably made a bit more efficient
-        channel.getMessages(10).join().reversed().forEach { m ->
+        channel.getMessages(15).join().reversed().forEach { m ->
             if (m.attachments.size > 0) {
                 return m.attachments.first().downloadAsImage().join()
             }

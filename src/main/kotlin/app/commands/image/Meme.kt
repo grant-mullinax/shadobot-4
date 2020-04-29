@@ -2,34 +2,25 @@ package app.commands.image
 
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
-import app.parsing.ParserFailureException
-import org.javacord.api.DiscordApi
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
 import java.awt.BasicStroke
 import java.awt.Color
 import java.awt.Font
-import java.awt.geom.AffineTransform
-import java.awt.image.AffineTransformOp
-import java.awt.image.BufferedImage
-import kotlin.math.cos
-import kotlin.math.sin
+import kotlin.math.roundToInt
 
 class Meme : StandardCommand() {
     override val commandName = "meme"
+    override val helpString = "adds funny meme text\n!meme \"top text\" \"bottom text\" 10.0 "
 
     override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
-        val memeText = parser.extractMultiSpaceString("meme text").split("|")
-        val topText = memeText[0]
-        val bottomText = if (memeText.size > 1) memeText[1] else ""
-
-        //val size = parser.extractInt("text size", 70)
+        val topText = parser.extractMultiSpaceString("top text","TOP TEXT")
+        val bottomText = parser.extractMultiSpaceString("bottom text","BOTTOM TEXT")
+        val scale = parser.extractFloat("text size", 10f)
 
         val image = parser.extractImageAndLookUpward()
-
-        val scale = if (memeText.size == 3) memeText[2].toInt() else 10
-        val size = image.width/scale
+        val size = (image.width/scale).roundToInt()
 
         val graphics = image.createGraphics()
         graphics.color = Color.black

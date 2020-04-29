@@ -16,6 +16,6 @@ class RoleInfo : StandardCommand() {
         event.channel.sendMessage("${role.name} -\n" +
                 "id: ${role.id}\n" +
                 "perms: ${role.permissions.allowedBitmask}\n" +
-                "color: ${role.color.get()}")
+                "color: ${role.color.orElse(null)}")
     }
 }

@@ -10,9 +10,11 @@ import app.commands.trash.*
 import app.commands.vote.Vote
 import app.commands.wackynumbers.*
 import org.javacord.api.DiscordApiBuilder
+import java.io.File
 
 fun main() {
-    val api = DiscordApiBuilder().setToken(Keys.discord).login().join()
+    var file = File("dev")
+    val api = DiscordApiBuilder().setToken(if (file.exists()) Keys.discordDev else Keys.discordProd).login().join()
 
     val cBot = CommunistBot(api)
     cBot.processes.add(Filter())
@@ -39,6 +41,7 @@ fun main() {
         Bars(),
         Resize(),
         Avatar(),
+        Spell(),
         Ascii(),
         Img(),
         AniDrip(),
@@ -64,12 +67,15 @@ fun main() {
         Mirror(),
         Dream(),
         MegaDream(),
+        Bf(),
         Roll(),
         Outline(),
-        // WaifuTroll(api),
+        Flag(),
         Distribute(),
         ColorMe(),
-        ListCommands(cBot)
+        Whereami(api),
+        OblivionPlus(),
+        Help(cBot)
     ).forEach(cBot::addProccess)
 
     val dogeProcess = AddDoge(api)

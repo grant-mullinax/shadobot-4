@@ -21,34 +21,42 @@ class Img : StandardCommand() {
     override val commandName = "img"
 
     override fun action(event: MessageCreateEvent) {
-        try {
-            val parser = MessageParameterParser(event.message)
-            val query = parser.extractMultiSpaceString("query")
+        val parser = MessageParameterParser(event.message)
+        val query = parser.extractMultiSpaceString("query")
 
-            val url = URL(
-                "https://www.googleapis.com/customsearch/v1" +
-                        "?q=" + URLEncoder.encode(query, "UTF-8") +
-                        "&num=3" +
-                        "&start=1" +
-                        "&imgSize=medium" +
-                        "&filetype=jpg" +
-                        "&searchType=image" +
-                        "&key=" + Keys.googleImages +
-                        "&cx=002530997264605549526:retczad1ovw"
-            )
+        val url = URL(
+            "https://www.googleapis.com/customsearch/v1" +
+                    "?q=" + URLEncoder.encode(query, "UTF-8") +
+                    "&num=3" +
+                    "&start=1" +
+                    "&imgSize=medium" +
+                    "&filetype=jpg" +
+                    "&searchType=image" +
+                    "&key=" + Keys.googleImages +
+                    "&cx=002530997264605549526:retczad1ovw"
+        )
 
-            with(url.openConnection() as HttpURLConnection) {
-                requestMethod = "GET"
+        with(url.openConnection() as HttpURLConnection) {
+            requestMethod = "GET"
 
-                val jsonString = inputStream.bufferedReader().use {
-                    it.lines().reduce { a, b -> a + "\n" + b }
-                }
-                val url = jsonString.toString().substringAfter("link\": \"").substringBefore("\"")
-                event.channel.sendMessage(url)
-
+            val jsonString = inputStream.bufferedReader().use {
+                it.lines().reduce { a, b -> a + "\n" + b }
             }
-        } catch (e: Exception) {
-            event.channel.sendMessage("sorry guys its broke wait until tomorrow lol")
-        }
+
+            println(jsonString.toString())
+            val urlString = jsonString.toString().substringAfter("link\": \"").substringBefore("\"")
+            println(urlString)
+            try {
+                val image = ImageIO.read(URL(urlString))
+
+                val message = MessageBuilder()
+                message.addAttachment(image, "result.png")
+
+                message.send(event.channel)
+            } catch (e: Exception) {
+                println(e.message)
+                event.channel.sendMessage("you probably had no results bro")
+            }
+        } 
     }
 }

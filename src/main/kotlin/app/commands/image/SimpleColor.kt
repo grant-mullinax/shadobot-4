@@ -59,6 +59,10 @@ class SimpleColor {
         return (red + green + blue) / 3
     }
 
+    fun toGreyscale(): SimpleColor {
+        return SimpleColor(darkness(), darkness(), darkness())
+    }
+
     fun darknessToAlpha(): SimpleColor {
         return SimpleColor(red, green, blue, darkness())
     }
