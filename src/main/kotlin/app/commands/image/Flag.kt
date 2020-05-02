@@ -3,10 +3,8 @@ package app.commands.image
 import app.Keys
 import app.commands.abstract.StandardCommand
 import app.parsing.MessageParameterParser
-import com.sun.webkit.graphics.GraphicsDecoder.SCALE
 import org.javacord.api.entity.message.MessageBuilder
 import org.javacord.api.event.message.MessageCreateEvent
-import sun.awt.image.ToolkitImage
 import java.awt.Color
 import java.awt.Graphics2D
 import java.io.File

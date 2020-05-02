@@ -13,7 +13,7 @@ fun main() {
     println("b4: $before")
     for (i in 0..100000) {
         val a = ::test as KFunction<*>
-        a.
+        //a.
         val b = a.parameters.size
         test(b + i, "abc", null)
     }

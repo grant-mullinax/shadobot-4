@@ -1,4 +1,4 @@
-package slang
+/*package slang
 
 import app.CommunistBot
 import app.Keys
@@ -11,4 +11,4 @@ fun main() {
 
     val cBot = CommunistBot(api)
 
-}
+}*/
