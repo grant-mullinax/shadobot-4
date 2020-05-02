@@ -15,8 +15,8 @@ class Meme : StandardCommand() {
 
     override fun action(event: MessageCreateEvent) {
         val parser = MessageParameterParser(event.message)
-        val topText = parser.extractMultiSpaceString("top text","TOP TEXT")
-        val bottomText = parser.extractMultiSpaceString("bottom text","BOTTOM TEXT")
+        val topText = parser.extractMultiSpaceString("top text","")
+        val bottomText = parser.extractMultiSpaceString("bottom text","")
         val scale = parser.extractFloat("text size", 10f)
 
         val image = parser.extractImageAndLookUpward()
