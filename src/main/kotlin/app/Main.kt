@@ -44,6 +44,7 @@ fun main() {
         Spell(),
         Ascii(),
         Img(),
+        InvertColor(),
         AniDrip(),
         Drip(),
         Meme(),

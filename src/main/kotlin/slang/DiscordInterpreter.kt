@@ -1,4 +1,4 @@
-package slang
+/*package slang
 
 import app.parsing.ParserFailureException
 import org.javacord.api.event.message.MessageCreateEvent
@@ -71,5 +71,5 @@ class SLangEnvironment {
 
         }
     }
-}
+}*/
 

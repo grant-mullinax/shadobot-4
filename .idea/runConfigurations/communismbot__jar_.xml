@@ -16,7 +16,7 @@
     <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
     <method v="2">
       <option name="Gradle.BeforeRunTask" enabled="true" tasks="jar" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
-      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_deploy" />
+      <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_External Tools_remote" />
     </method>
   </configuration>
 </component>
